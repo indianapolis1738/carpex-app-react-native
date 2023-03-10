@@ -22,20 +22,35 @@ const WalletStack = createStackNavigator();
 const MarketStack = createStackNavigator();
 
 const DashStackScreen = () => (
-  <DashStack.Navigator  >
+  <DashStack.Navigator 
+  screenOptions={{
+    headerShown: false,
+    tabBarActiveTintColor: '#172144',
+  }}
+  >
     <DashStack.Screen  name="Dashboard" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
   </DashStack.Navigator>
 ) 
 
 const WalletStackScreen = () => (
-  <WalletStack.Navigator>
+  <WalletStack.Navigator
+  screenOptions={{
+    headerShown: false,
+    tabBarActiveTintColor: '#172144',
+  }}
+  >
     <WalletStack.Screen  name="Wallet" component={Wallet} />
   </WalletStack.Navigator>
 )
 
 const MarketStackScreen = () => (
-  <MarketStack.Navigator>
+  <MarketStack.Navigator
+  screenOptions={{
+    headerShown: false,
+    tabBarActiveTintColor: '#172144',
+  }}
+  >
     <MarketStack.Screen  name="Market" component={Market}  />
   </MarketStack.Navigator>
 )
