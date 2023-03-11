@@ -1,10 +1,13 @@
-import { SafeAreaView, Text } from 'react-native'
+import { Image, SafeAreaView, Text } from 'react-native'
 import React from 'react'
+import splash from '../../assets/splash.gif'
 
 export default function Splash() {
   return (
     <SafeAreaView>
-      <Text>Loading</Text>
+      <Image
+        source={splash}
+      />
     </SafeAreaView>
   )
 }
