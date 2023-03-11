@@ -1,6 +1,7 @@
 import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import Line from '../../components/Line'
+import Tables from '../../components/Tables'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
@@ -35,11 +36,12 @@ export class Wallet extends Component {
   render() {
     return (
       <SafeAreaView style= {styles.page}>
-        <ScrollView>
-        <View style = {styles.header}>
+         <View style = {styles.header}>
           <Text style = {styles.wa}>Wallet</Text>
           <Text style = {styles.view}>View all your daily crypto stats and assets here</Text>
         </View>
+        <ScrollView>
+       
 
         <View style= {styles.wallet}>
           <View style={styles.baldiv}>
@@ -78,7 +80,7 @@ export class Wallet extends Component {
           />
         </View>
         <View>
-
+          <Tables/>
         </View>
         </ScrollView>
       </SafeAreaView>
