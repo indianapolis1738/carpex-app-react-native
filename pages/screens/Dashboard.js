@@ -4,6 +4,7 @@ import { AuthContext } from './context'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
+import Market from './Market';
 
 
 
@@ -86,6 +87,7 @@ function Dashboard ({navigation})  {
         <Text style={ styles.marketHead}>
           Market
         </Text>
+          <Market/>
       </View>
       <Button title='Blog' onPress={pressBlog}/>
       <Button title='Sign Out' onPress={() => SignOut()} />
@@ -173,8 +175,8 @@ const styles = StyleSheet.create({
     },
     market: {
       backgroundColor: 'transparent',
-      minHeight: 400,
-      maxHeight: 800,
+      height: 500,
+      overflow: 'hidden',
     },
     marketHead: {
       fontWeight: '400',
