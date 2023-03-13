@@ -21,7 +21,6 @@ const Tabs = createBottomTabNavigator();
 const DashStack = createStackNavigator();
 const WalletStack = createStackNavigator();
 const MarketStack = createStackNavigator();
-const ProfileStack = createStackNavigator();
 
 const DashStackScreen = () => (
   <DashStack.Navigator 
@@ -32,6 +31,7 @@ const DashStackScreen = () => (
   >
     <DashStack.Screen  name="Dashboard" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
+    <DashStack.Screen name="Profile" component={Profile} />
   </DashStack.Navigator>
 ) 
 
@@ -46,11 +46,6 @@ const WalletStackScreen = () => (
   </WalletStack.Navigator>
 )
 
-const ProfileStackScreen = () => (
-  <ProfileStackScreen.Navigator>
-    <ProfileStack.Screen name='Profile' component={Profile} />
-  </ProfileStackScreen.Navigator>
-)
 
 const MarketStackScreen = () => (
   <MarketStack.Navigator
@@ -111,20 +106,20 @@ export default () => {
       >
         <Tabs.Screen  options={{
           tabBarLabel: 'Dashboard',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="home" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="home" color={color} size={30} />
           ),
         }} name="Dashboard" component={DashStackScreen} />
         <Tabs.Screen options={{
           tabBarLabel: 'Wallet',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="wallet" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="wallet" color={color} size={30} />
           ),
         }} name="Wallet" component={WalletStackScreen} />
         <Tabs.Screen options={{
           tabBarLabel: 'Market',
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons name="bitcoin" color={color} size={size} />
+          tabBarIcon: ({ color }) => (
+            <MaterialCommunityIcons name="bitcoin" color={color} size={30} />
           ),
         }} name="Market" component={MarketStackScreen} />
       </Tabs.Navigator>

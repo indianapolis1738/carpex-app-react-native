@@ -1,10 +1,10 @@
 import { SafeAreaView, StatusBar, Button, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image } from 'react-native'
 import React, { useState } from 'react'
 import { AuthContext } from './context'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
+import Notifications from '../../components/notifications';
 
 
 
@@ -58,7 +58,7 @@ function Dashboard ({navigation})  {
 
   return (
     <SafeAreaView style= {{padding: 3, height: '100%',}}>
-      <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" />
+      <StatusBar barStyle="dark-content"/>
       <View style= {styles.div}>
        <View style={styles.dashdiv}>
         <TouchableOpacity style={styles.menu}>
@@ -67,12 +67,12 @@ function Dashboard ({navigation})  {
          <Text style= {styles.dash}> Dashboard</Text>
        <View style={styles.dashicon}>
         <View style={styles.icon}>
-           <MaterialCommunityIcons name='bell' color={'rgba(123, 120, 120, 1)'} size= {24} />
+           <Notifications />
         </View>
         <View style={styles.icon}>
             <Entypo name="adjust" size={24} color={'rgba(123, 120, 120, 1)'} />
         </View>
-        <View style={styles.icon}>
+        <View  style={{paddingEnd: 20,}}>
           <TouchableOpacity onPress={pressProfile}>
             <Image
             source={{uri: 'https://lh3.googleusercontent.com/a/AGNmyxYRX-4BlLMfVvFvDtl3kHs70DiJYOt5UWAcyd8=s360',}}
@@ -133,7 +133,6 @@ function Dashboard ({navigation})  {
           <Market/>
       </View>
       <Button title='Blog' onPress={pressBlog}/>
-      <Button title='Sign Out' onPress={() => SignOut()} />
       </ScrollView>
     </SafeAreaView>
   )
@@ -177,9 +176,10 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
     dash: {
-      fontSize: 20,
+      fontSize: 22,
       fontWeight: '700',
       fontStyle: 'normal',
+      marginTop: 8,
     },
     dashdiv: {
       marginTop: 20,
@@ -198,9 +198,8 @@ const styles = StyleSheet.create({
     },
     icon: {
       marginEnd: 12,
-      borderColor: 'rgba(123, 120, 120, 1)',
-      borderWidth: 2,
-      borderRadius: 30,
+      width: 30,
+      marginTop: 7,
     },
     last: {
       color: '#FFFFFF',
@@ -232,7 +231,6 @@ const styles = StyleSheet.create({
       fontSize: 30,
     },
     menu: {
-      marginTop: -4,
       paddingStart: 10,
     },
     textTab: {
