@@ -1,10 +1,10 @@
-import { SafeAreaView, StatusBar, Button, StyleSheet, Text, View, ScrollView, TouchableOpacity, FlatList } from 'react-native'
+import { SafeAreaView, StatusBar, Button, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image } from 'react-native'
 import React, { useState } from 'react'
 import { AuthContext } from './context'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import Market from './Market';
+import Market from './homeMarket';
 
 
 
@@ -23,6 +23,17 @@ const listTab = [
 
 function Dashboard ({navigation})  {
 
+
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
+
   const [status, setStatus] = useState('All')
   const setStatusFilter = status => {
     setStatus(status)
@@ -35,8 +46,18 @@ function Dashboard ({navigation})  {
     navigation.navigate("Blog")
   }
 
+  const pressMarket = () => {
+    navigation.navigate('Market')
+  }
+
+
+  const pressProfile = () => {
+    navigation.navigate('Profile')
+  }
+
+
   return (
-    <SafeAreaView style= {{padding: 3,}}>
+    <SafeAreaView style= {{padding: 3, height: '100%',}}>
       <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" />
       <View style= {styles.div}>
        <View style={styles.dashdiv}>
@@ -52,12 +73,26 @@ function Dashboard ({navigation})  {
             <Entypo name="adjust" size={24} color={'rgba(123, 120, 120, 1)'} />
         </View>
         <View style={styles.icon}>
-            <MaterialCommunityIcons name="face-man-profile" size={24} color="rgba(123, 120, 120, 1)" />
+          <TouchableOpacity onPress={pressProfile}>
+            <Image
+            source={{uri: 'https://lh3.googleusercontent.com/a/AGNmyxYRX-4BlLMfVvFvDtl3kHs70DiJYOt5UWAcyd8=s360',}}
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: 20,
+            }}
+            />
+            </TouchableOpacity>
         </View>
         </View>
       </View>
       </View>
-      <ScrollView>
+      <ScrollView
+         contentContainerStyle={styles.scrollView}
+         refreshControl={
+           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+         }
+      >
       <View style={styles.container}>
         <View style={styles.lastcol}>
           <Text style={styles.last}>
@@ -84,9 +119,17 @@ function Dashboard ({navigation})  {
           </View>
       </View>
       <View style={styles.market}>
-        <Text style={ styles.marketHead}>
-          Market
-        </Text>
+        <View style={styles.marketDiv}>
+          <Text style={ styles.marketHead}>
+            Market
+          </Text>
+          <TouchableOpacity onPress={pressMarket} style={{flexDirection: 'row', paddingStart: '40%', marginTop: 12,}}>
+            <Text>
+              View More
+            </Text>
+            <MaterialIcons name="arrow-forward" size={24} color="black" />
+          </TouchableOpacity>
+        </View>
           <Market/>
       </View>
       <Button title='Blog' onPress={pressBlog}/>
@@ -178,11 +221,15 @@ const styles = StyleSheet.create({
       height: 500,
       overflow: 'hidden',
     },
+    marketDiv: {
+      flexDirection: 'row',
+      paddingStart: 25,
+      paddingTop: 40,
+      marginBottom: 20,
+    },
     marketHead: {
       fontWeight: '400',
       fontSize: 30,
-      paddingStart: 25,
-      paddingTop: 20,
     },
     menu: {
       marginTop: -4,

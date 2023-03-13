@@ -13,6 +13,7 @@ import Blog from "./pages/screens/Blog";
 import Splash from "./pages/screens/Splash";
 import { AuthContext } from "./pages/screens/context";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import Profile from "./pages/screens/Profile";
 
 
 const AuthStack = createStackNavigator();
@@ -20,6 +21,7 @@ const Tabs = createBottomTabNavigator();
 const DashStack = createStackNavigator();
 const WalletStack = createStackNavigator();
 const MarketStack = createStackNavigator();
+const ProfileStack = createStackNavigator();
 
 const DashStackScreen = () => (
   <DashStack.Navigator 
@@ -42,6 +44,12 @@ const WalletStackScreen = () => (
   >
     <WalletStack.Screen  name="Wallet" component={Wallet} />
   </WalletStack.Navigator>
+)
+
+const ProfileStackScreen = () => (
+  <ProfileStackScreen.Navigator>
+    <ProfileStack.Screen name='Profile' component={Profile} />
+  </ProfileStackScreen.Navigator>
 )
 
 const MarketStackScreen = () => (

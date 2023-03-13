@@ -1,27 +1,44 @@
 import { useEffect, useState } from 'react'
-import { View, Text, SafeAreaView, ScrollView, Image, StyleSheet, Button, TouchableOpacity } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Image, StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native'
 import React from 'react'
+import { MaterialIcons } from '@expo/vector-icons';
 
 export default function Market() {
 
+  const [refreshing, setRefreshing] = React.useState(false);
+
+  const onRefresh = React.useCallback(() => {
+    setRefreshing(true);
+    setTimeout(() => {
+      setRefreshing(false);
+    }, 2000);
+  }, []);
+
   const [data,setData] = useState([])
 
-  const [loading, setLoading] = useState(true)
-
-  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h'
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=200&page=1&sparkline=false&price_change_percentage=1h'
 
   useEffect (()=> {
     fetch(url) 
     .then((response)=>response.json())
     .then((json)=> setData(json))
     .catch((error)=>console.error(error))
-    .finally(()=>setLoading(false))
   }, [])
 
   return (
     <SafeAreaView>
-      <ScrollView>
-        {loading ? (<Text>loading</Text>) : (
+      <View style={styles.header}>
+        <Text style={styles.headerName}>Coin</Text>
+        <Text style={styles.headerName}>Price</Text>
+        <Text style={styles.headerName}>Trade</Text>
+      </View>
+      <ScrollView
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
+      >
+        { (
           data.map((coins) => (
             <View style={styles.market}>
               <View >
@@ -48,12 +65,17 @@ export default function Market() {
                 </Text>
                 {
                   coins.price_change_percentage_24h < 0 ?(
-                <Text style={{color: 'red'}}>
-                  {coins.price_change_percentage_24h.toFixed(2)}%
-                </Text> ) : (
-                   <Text style={{color: 'green'}}>
-                   {coins.price_change_percentage_24h.toFixed(2)}%
-                 </Text> 
+                    <View style={{flexDirection: 'row'}}>
+                    <MaterialIcons name="arrow-drop-down" size={20} color="red" />
+                      <Text style={{color: 'red', flexDirection: 'row,'}}>
+                        {coins.price_change_percentage_24h.toFixed(2)}%
+                      </Text></View> ) : (
+                    <View style={{flexDirection: 'row'}}>
+                      <MaterialIcons name="arrow-drop-up" size={20} color="green" />
+                      <Text style={{color: 'green'}}>
+                      {coins.price_change_percentage_24h}%
+                      </Text> 
+                     </View>
                 )
                 }
                 
@@ -80,6 +102,18 @@ const styles = StyleSheet.create({
     marginEnd: 20,
     height: 35,
     borderRadius: 10,
+  },
+  header: {
+    flexDirection: 'row',
+    width: '100%',
+    height: 50,
+    backgroundColor:'white',
+    marginBottom: 10,
+  },
+  headerName: {
+    marginStart: '20%',
+    marginTop: 15,
+    fontWeight: '700',
   },
   market: {
     flexDirection: 'row',

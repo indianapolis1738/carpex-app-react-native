@@ -2,7 +2,8 @@ import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,Statu
 import React, { Component } from 'react'
 import Line from '../../components/Line'
 import Tables from '../../components/Tables'
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialIcons } from '@expo/vector-icons';
+import Market from './homeMarket';
 
 
 
@@ -36,9 +37,14 @@ export class Wallet extends Component {
   render() {
     return (
       <SafeAreaView style= {styles.page}>
-         <View style = {styles.header}>
+        <View style = {styles.header}>
+          <View>
           <Text style = {styles.wa}>Wallet</Text>
           <Text style = {styles.view}>View all your daily crypto stats and assets here</Text>
+          </View>
+          <View style={styles.menu}>
+          <MaterialIcons name="menu" size={40} color="black" />
+          </View>
         </View>
         <ScrollView>
        
@@ -46,7 +52,7 @@ export class Wallet extends Component {
         <View style= {styles.wallet}>
           <View style={styles.baldiv}>
           <Text style = {styles.total}>Total Balance</Text>
-          <Text style = {styles.balance}>1,2000,000</Text>
+          <Text style = {styles.balance}>₦1,200,000</Text>
           </View>
           <View style = {styles.buttons}>
           <Line/>
@@ -80,7 +86,7 @@ export class Wallet extends Component {
           />
         </View>
         <View>
-          <Tables/>
+          <Market/>
         </View>
         </ScrollView>
       </SafeAreaView>
@@ -110,6 +116,28 @@ const styles = StyleSheet.create ({
     marginStart: 12,
     marginTop: 20,
   },
+  carouselbig: {
+    flex: 1,
+    marginTop: 10,
+    width: '90%',
+    marginStart: '5%',
+    marginBottom: 40,
+  },
+  container: {
+      display: 'flex',
+      flexDirection: 'row',
+      marginStart: 2,
+      marginTop: 20,
+      marginBottom: 20,
+  },
+  header: {
+    marginTop: 10,
+    marginStart: 10,
+    marginBottom: 30,
+    height: 50,
+    backgroundColor: '#FFFFFF',
+    flexDirection: 'row',
+  },
   item: {
     width: 300,
     height: 130,
@@ -119,24 +147,9 @@ const styles = StyleSheet.create ({
     marginHorizontal: 10,
     marginTop: 20,
   },
-  carouselbig: {
-    flex: 1,
+  menu: {
+    marginStart: 20,
     marginTop: 10,
-    width: '90%',
-    marginStart: '5%',
-  },
-  container: {
-      display: 'flex',
-      flexDirection: 'row',
-      marginStart: 2,
-      marginTop: 20,
-  },
-  header: {
-    marginTop: 10,
-    marginStart: 10,
-    marginBottom: 30,
-    height: 50,
-    backgroundColor: '#FFFFFF',
   },
   page: {
     height: '100%',
