@@ -1,4 +1,4 @@
-import { SafeAreaView, Text,StatusBar, View, StyleSheet, Image, Button } from 'react-native'
+import { SafeAreaView, Text,StatusBar, View, StyleSheet, Image, Button, Pressable } from 'react-native'
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -114,8 +114,12 @@ const Profile = ({navigation}) => {
           </View>
         </View>
       </View>
-      
-      <Button title='Sign Out' onPress={() => SignOut()} />
+      <Pressable style={styles.logout} onPress={() => SignOut()} >
+        <Text style={{
+    color: 'white', alignSelf: 'center', marginTop: 10, fontWeight: '500'}}>
+        Sign Out
+        </Text>
+      </Pressable>
     </SafeAreaView>
   )
 }
@@ -141,6 +145,13 @@ const styles = StyleSheet.create ({
   info: {
     marginStart: 30,
     marginTop: 5
+  },
+  logout: {
+    backgroundColor: '#172144',
+    width: '30%',
+    height: 40,
+    alignSelf: 'center',
+    borderRadius: 10
   },
   settings: {
     fontSize: 23,
