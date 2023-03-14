@@ -1,7 +1,6 @@
 import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,StatusBar } from 'react-native'
 import React, { Component } from 'react'
 import Line from '../../components/Line'
-import Tables from '../../components/Tables'
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
 

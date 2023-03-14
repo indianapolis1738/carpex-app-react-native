@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { Modal, StyleSheet, Text, Pressable, View, SafeAreaView} from 'react-native';
+import { Modal, StyleSheet, Text, Pressable, View, SafeAreaView, TouchableOpacity} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 
@@ -20,12 +20,18 @@ class notifications extends Component {
           >
           <View>
             <SafeAreaView style={styles.modalView}>
-            <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => this.setState({modalVisible: !modalVisible})}>
-                <Text style={styles.textStyle}>X</Text>
-              </Pressable>
-
+            <View style={{flexDirection: 'row',}}>
+                <Text style={styles.notifications}>
+                    Notifications
+                </Text>
+                <TouchableOpacity
+                onPress={() => this.setState({modalVisible: !modalVisible})}
+                style={styles.cancel}
+                >
+                    <Text style={styles.textStyle}>X</Text>
+                </TouchableOpacity>
+            </View>
+                
             </SafeAreaView>
           </View>
         </Modal>
@@ -39,25 +45,26 @@ class notifications extends Component {
 }
 
 const styles = StyleSheet.create({
- 
+  cancel: {
+    marginStart: '45%',
+  },
   modalView: {
     backgroundColor: 'white',
     borderRadius: 20,
     width: '100%',
     height: '100%',
   },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
+  notifications: {
+    fontSize: 30,
+    fontWeight: '500'
   },
-  buttonClose: {
-    backgroundColor: 'black',
-    width: 30,
-  },
+  
   textStyle: {
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
+    textAlign: 'center',
+    marginTop: 10,
+    fontSize: 30,
   },
   
 });

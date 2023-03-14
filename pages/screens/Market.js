@@ -1,9 +1,27 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef, useMemo,useCallback } from 'react'
 import { View, Text, SafeAreaView, ScrollView, Image, StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native'
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from '@gorhom/bottom-sheet';
+import Chart from '../../components/Chart';
 
 export default function Market() {
+
+  const [selectedCoin, setSelectedCoin] = useState(null)
+
+  const openModal = (coins) =>{
+    setSelectedCoin(coins);
+    bottomSheetModalRef.current.present();
+  }
+
+   // ref
+   const bottomSheetModalRef = useRef (null);
+
+   // variables
+   const snapPoints = useMemo(() => ['50%', '95%'], []);
 
   const [refreshing, setRefreshing] = React.useState(false);
 
@@ -16,7 +34,7 @@ export default function Market() {
 
   const [data,setData] = useState([])
 
-  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=200&page=1&sparkline=false&price_change_percentage=1h'
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=7d'
 
   useEffect (()=> {
     fetch(url) 
@@ -26,6 +44,7 @@ export default function Market() {
   }, [])
 
   return (
+    <BottomSheetModalProvider>
     <SafeAreaView>
       <View style={styles.header}>
         <Text style={styles.headerName}>Coin</Text>
@@ -40,8 +59,8 @@ export default function Market() {
       >
         { (
           data.map((coins) => (
-            <View style={styles.market}>
-              <View >
+            <TouchableOpacity  style={styles.market} onPress = {() => openModal(coins)} >
+              <View  >
                 <Image 
                   source={{ uri: coins.image}}
                   style={{
@@ -83,7 +102,7 @@ export default function Market() {
               <TouchableOpacity style={styles.buy}>
                 <Text style={{color: 'white', alignSelf: 'center', marginTop: 10,}}>Buy</Text>
               </TouchableOpacity>
-            </View>
+            </TouchableOpacity>
             
 
           ))
@@ -91,7 +110,34 @@ export default function Market() {
         </ScrollView>
     </SafeAreaView>
 
+
+
+
+    <BottomSheetModal
+      ref={bottomSheetModalRef}
+      index={0}
+      snapPoints={snapPoints}
+    >
+      { selectedCoin ? (
+         <Chart
+          currentPrice={selectedCoin.current_price}
+          logoUrl={selectedCoin.image}
+          name={selectedCoin.name}
+          priceChange={selectedCoin.price_change_percentage_24h}
+          sparkline={selectedCoin.sparkline_in_7d}
+          short= {selectedCoin.symbol}
+          marketCapRank= {selectedCoin.market_cap_rank}
+         />
+         ) : (<View>
+          No Data
+         </View>)
+        }
+    </BottomSheetModal>
+    </BottomSheetModalProvider>
+
   )
+
+  
 }
 
 const styles = StyleSheet.create({

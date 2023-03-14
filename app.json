@@ -29,7 +29,7 @@
       "package": "com.indianapolis1738.carpex"
     },
     "web": {
-      "favicon": "./assets/favicon.png",
+      "favicon": "./assets/favicon.jpg",
       "bundler": "metro"
     },
     "extra": {

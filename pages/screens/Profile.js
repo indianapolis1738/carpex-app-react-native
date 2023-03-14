@@ -4,6 +4,8 @@ import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
+import { SimpleLineIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 
 import { AuthContext } from '../screens/context'
 
@@ -33,6 +35,7 @@ const Profile = ({navigation}) => {
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 50, marginStart: 20,}}>
+        <View>
         <Image 
           source={{uri: 'https://lh3.googleusercontent.com/a/AGNmyxYRX-4BlLMfVvFvDtl3kHs70DiJYOt5UWAcyd8=s360',}}
           style={{
@@ -41,6 +44,9 @@ const Profile = ({navigation}) => {
             borderRadius: 40,
           }}
         />
+        <FontAwesome name="edit" size={24} color="black" style={{marginStart: 60, marginTop: -20}} />
+        </View>
+        
         <View style={styles.username}>
           <Text style={{fontSize: 25, fontWeight: '500'}}>
             Dada Iyanuoluwa
@@ -116,9 +122,10 @@ const Profile = ({navigation}) => {
       </View>
       <Pressable style={styles.logout} onPress={() => SignOut()} >
         <Text style={{
-    color: 'white', alignSelf: 'center', marginTop: 10, fontWeight: '500'}}>
-        Sign Out
+          color: 'white',   fontWeight: '500', alignSelf: 'center', marginStart: 20,}}>
+          Sign Out  <SimpleLineIcons name="logout" size={20} color="white" />
         </Text>
+        
       </Pressable>
     </SafeAreaView>
   )
@@ -151,7 +158,9 @@ const styles = StyleSheet.create ({
     width: '30%',
     height: 40,
     alignSelf: 'center',
-    borderRadius: 10
+    borderRadius: 10,
+    marginTop: 15,
+    flexDirection: 'row',
   },
   settings: {
     fontSize: 23,
