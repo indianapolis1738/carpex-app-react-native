@@ -2,7 +2,7 @@ import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
 import React from 'react'
 import { LineChart } from 'react-native-chart-kit'
 
-const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marketCapRank }) => {
+const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marketCapRank, marketcap }) => {
 
   
   return (
@@ -29,37 +29,32 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
         <Text style={styles.current}>
         ₦{currentPrice.toLocaleString()}
         </Text>
-        <Text>
+        {
+          priceChange < 0 ? (
+            <Text style={{color: 'red'}}>
             {priceChange.toFixed(2)}%
+            </Text>
+          ) : (
+            <Text style={{color: 'green'}}>
+            {priceChange.toFixed(2)}%
+            </Text>
+          )
+        }
+      </View>
+       <View style={styles.marketCap}>
+        <Text style={styles.rank}>
+          Rank: {marketCapRank}
         </Text>
+        <Text style={styles.capitalization}>
+          Market Capitalization: ₦{marketcap.toLocaleString()}
+        </Text>
+       </View>
+       <View>
+        <Text>
+
+        </Text>
+       </View>
       </View>
-      </View>
-
-      <LineChart
-        data={sparkline}
-        width={Dimensions.get("window").width}
-        height={256}
-        verticalLabelRotation={30}
-        chartConfig={{
-            backgroundColor: "#e26a00",
-            backgroundGradientFrom: "#fb8c00",
-            backgroundGradientTo: "#ffa726",
-            decimalPlaces: 2, // optional, defaults to 2dp
-            color: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            labelColor: (opacity = 1) => `rgba(255, 255, 255, ${opacity})`,
-            style: {
-              borderRadius: 16
-            },
-            propsForDots: {
-              r: "6",
-              strokeWidth: "2",
-              stroke: "#ffa726"
-            }
-          }}
-         bezier
-      />
-
-
 
     </View>
   )
@@ -67,6 +62,10 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
 
 
 const styles = StyleSheet.create({
+  capitalization: {
+    fontSize: 15,
+    fontWeight: '500',
+  },
     current: {
         fontSize: 20,
         fontWeight: '700'
@@ -76,6 +75,13 @@ const styles = StyleSheet.create({
         marginStart: '2.5%',
         marginEnd: '2.5%',
     },
+    marketCap: {
+      marginTop: 20,
+    },
+    rank: {
+      fontSize: 20,
+      fontWeight: '400',
+    },
     titles: {
        flexDirection: 'row',
        justifyContent: 'space-between',
@@ -84,7 +90,8 @@ const styles = StyleSheet.create({
     titleLower: {
         flexDirection: 'row',
         justifyContent: 'space-between',
-        alignItems: 'center'
+        alignItems: 'center',
+        marginTop: 10,
     },
 })
 

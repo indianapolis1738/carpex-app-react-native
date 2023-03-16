@@ -7,8 +7,14 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 import Chart from '../../components/Chart';
+import moment from 'moment/moment';
+
+
+
 
 export default function Market() {
+
+ 
 
   const [selectedCoin, setSelectedCoin] = useState(null)
 
@@ -59,6 +65,7 @@ export default function Market() {
       >
         { (
           data.map((coins) => (
+            
             <TouchableOpacity  style={styles.market} onPress = {() => openModal(coins)} >
               <View  >
                 <Image 
@@ -124,9 +131,9 @@ export default function Market() {
           logoUrl={selectedCoin.image}
           name={selectedCoin.name}
           priceChange={selectedCoin.price_change_percentage_24h}
-          sparkline={selectedCoin.sparkline_in_7d}
           short= {selectedCoin.symbol}
           marketCapRank= {selectedCoin.market_cap_rank}
+          marketcap= {selectedCoin.market_cap}
          />
          ) : (<View>
           No Data
