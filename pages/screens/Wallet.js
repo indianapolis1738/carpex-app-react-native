@@ -1,8 +1,9 @@
-import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,StatusBar } from 'react-native'
+import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,StatusBar, TouchableOpacity } from 'react-native'
 import React, { Component } from 'react'
 import Line from '../../components/Line'
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
+import { AuthContext } from './context'
 
 
 
@@ -28,12 +29,11 @@ const Item = ({title}) => (
   </View>
 );
 
-export class Wallet extends Component {
+function Wallet ({navigation}) {
 
 
 
 
-  render() {
     return (
       <SafeAreaView style= {styles.page}>
         <View style = {styles.header}>
@@ -41,9 +41,9 @@ export class Wallet extends Component {
           <Text style = {styles.wa}>Wallet</Text>
           <Text style = {styles.view}>View all your daily crypto stats and assets here</Text>
           </View>
-          <View style={styles.menu}>
+          <TouchableOpacity style={styles.menu} onPress= {() => navigation.toggleDrawer()} >
           <MaterialIcons name="menu" size={40} color="black" />
-          </View>
+          </TouchableOpacity>
         </View>
         <ScrollView>
        
@@ -91,7 +91,7 @@ export class Wallet extends Component {
       </SafeAreaView>
     )
   }
-}
+
 
 const styles = StyleSheet.create ({
   assets: {
@@ -202,4 +202,4 @@ const styles = StyleSheet.create ({
   },
 })
 
-export default Wallet
+export default Wallet;

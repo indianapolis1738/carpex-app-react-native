@@ -61,7 +61,7 @@ function Dashboard ({navigation})  {
       <StatusBar barStyle="dark-content"/>
       <View style= {styles.div}>
        <View style={styles.dashdiv}>
-        <TouchableOpacity style={styles.menu}>
+        <TouchableOpacity style={styles.menu} onPress= {() => navigation.toggleDrawer()}>
          <MaterialIcons name="menu" size={35} color="rgba(123, 120, 120, 1)" />
          </TouchableOpacity>
          <Text style= {styles.dash}> Dashboard</Text>

@@ -1,8 +1,7 @@
 import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-
-
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import  SignUp from "./pages/screens/SignUp"
 import SignIn from "./pages/screens/SignIn";
 import Dashboard from "./pages/screens/Dashboard";
@@ -14,6 +13,7 @@ import Splash from "./pages/screens/Splash";
 import { AuthContext } from "./pages/screens/context";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
+import 'react-native-gesture-handler';
 
 
 const AuthStack = createStackNavigator();
@@ -21,6 +21,7 @@ const Tabs = createBottomTabNavigator();
 const DashStack = createStackNavigator();
 const WalletStack = createStackNavigator();
 const MarketStack = createStackNavigator();
+const Drawer = createDrawerNavigator();
 
 const DashStackScreen = () => (
   <DashStack.Navigator 
@@ -57,6 +58,48 @@ const MarketStackScreen = () => (
     <MarketStack.Screen  name="Market" component={Market}  />
   </MarketStack.Navigator>
 )
+
+const BlogStack = createStackNavigator();
+
+
+const BlogStackScreen = () => (
+  <BlogStack.Navigator>
+    <BlogStack.Screen 
+      name = 'Blog' component={Blog}
+    />
+  </BlogStack.Navigator>
+)
+
+
+
+const TabsScreen = () => (
+  <Tabs.Navigator
+  screenOptions={{
+    headerShown: false,
+    tabBarActiveTintColor: '#172144',
+  }}
+>
+  <Tabs.Screen  options={{
+    tabBarLabel: 'Dashboard',
+    tabBarIcon: ({ color }) => (
+      <MaterialCommunityIcons name="home" color={color} size={30} />
+    ),
+  }} name="Dashboard" component={DashStackScreen} />
+  <Tabs.Screen options={{
+    tabBarLabel: 'Wallet',
+    tabBarIcon: ({ color }) => (
+      <MaterialCommunityIcons name="wallet" color={color} size={30} />
+    ),
+  }} name="Wallet" component={WalletStackScreen} />
+  <Tabs.Screen options={{
+    tabBarLabel: 'Market',
+    tabBarIcon: ({ color }) => (
+      <MaterialCommunityIcons name="bitcoin" color={color} size={30} />
+    ),
+  }} name="Market" component={MarketStackScreen} />
+</Tabs.Navigator>
+)
+
 
 export default () => {
 
@@ -98,31 +141,20 @@ export default () => {
     <NavigationContainer>
 
       {userToken ? (
-        <Tabs.Navigator
-        screenOptions={{
-          headerShown: false,
-          tabBarActiveTintColor: '#172144',
-        }}
-      >
-        <Tabs.Screen  options={{
-          tabBarLabel: 'Dashboard',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={30} />
-          ),
-        }} name="Dashboard" component={DashStackScreen} />
-        <Tabs.Screen options={{
-          tabBarLabel: 'Wallet',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="wallet" color={color} size={30} />
-          ),
-        }} name="Wallet" component={WalletStackScreen} />
-        <Tabs.Screen options={{
-          tabBarLabel: 'Market',
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="bitcoin" color={color} size={30} />
-          ),
-        }} name="Market" component={MarketStackScreen} />
-      </Tabs.Navigator>
+        <Drawer.Navigator 
+          screenOptions={{
+            headerShown: false,
+          }}
+        >
+          <Drawer.Screen 
+           name="Home" 
+           component={TabsScreen}
+          />
+          <Drawer.Screen 
+            name="Blog"
+            component={BlogStackScreen}
+          />
+        </Drawer.Navigator>
       ) : (
       <AuthStack.Navigator
       screenOptions={{
