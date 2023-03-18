@@ -99,9 +99,30 @@ function Dashboard ({navigation})  {
             Last 30 Days
           </Text>
           <View style={styles.assetrow}>
-            <View style={styles.assetcol}></View>
-            <View style={styles.assetcol}></View>
-            <View style={styles.assetcol}></View>
+            <View style={styles.assetcol}>
+              <Text style={styles.colHeader}>
+                Wallet Balance
+              </Text>
+              <Text style={styles.amountCol}>
+                121,000 NGN
+              </Text>
+            </View>
+            <View style={styles.assetcol}>
+              <Text style={styles.colHeader}>
+                Total Assets
+              </Text>
+              <Text style={styles.amountCol}>
+                23
+              </Text>
+            </View>
+            <View style={styles.assetcol}>
+              <Text style={styles.colHeader}>
+                Total Transactions
+              </Text>
+              <Text style={styles.amountCol}>
+                23
+              </Text>
+            </View>
           </View>
         </View>
       </View>
@@ -152,6 +173,12 @@ const styles = StyleSheet.create({
     height: 80,
     borderRadius: 5,
   },
+  amountCol: {
+    marginStart: 5,
+    marginTop: 10,
+    fontWeight: '700',
+    fontSize: 17,
+  },
   btnTabActive: {
     color: 'rgba(23, 33, 68, 1)',
     borderBottomWidth: 3,
@@ -168,6 +195,12 @@ const styles = StyleSheet.create({
     marginStart: '5%',
     borderRadius: 10,
     marginTop: 10,
+  },
+  colHeader: {
+    fontSize: 12,
+    fontWeight: '600',
+    marginTop: 10,
+    marginStart: 5,
   },
   container: {
     height: 600,

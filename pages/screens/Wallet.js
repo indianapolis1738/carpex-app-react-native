@@ -1,9 +1,10 @@
 import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,StatusBar, TouchableOpacity } from 'react-native'
-import React, { Component } from 'react'
+import React, { Component, useEffect, useRef, useMemo } from 'react'
 import Line from '../../components/Line'
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
-import { AuthContext } from './context'
+import Transfer from './../../TransactionScreens/Transfer'
+import { BottomSheetModal, BottomSheetModalProvider,  } from '@gorhom/bottom-sheet';
 
 
 
@@ -31,17 +32,24 @@ const Item = ({title}) => (
 
 function Wallet ({navigation}) {
 
+  const bottomSheetRef = useRef<BottomSheet>(null);
 
+  const snapPoints = useMemo(() => ['25%', '50%'], []);
+
+    function handlePresentModal() {
+      bottomSheetModalRef.current.present();
+    }
 
 
     return (
+      <BottomSheetModalProvider>
       <SafeAreaView style= {styles.page}>
         <View style = {styles.header}>
           <View>
           <Text style = {styles.wa}>Wallet</Text>
           <Text style = {styles.view}>View all your daily crypto stats and assets here</Text>
           </View>
-          <TouchableOpacity style={styles.menu} onPress= {() => navigation.toggleDrawer()} >
+          <TouchableOpacity style={styles.menu} onPress= {handlePresentModal} >
           <MaterialIcons name="menu" size={40} color="black" />
           </TouchableOpacity>
         </View>
@@ -63,7 +71,9 @@ function Wallet ({navigation}) {
                 <Button title='Withdraw' color={'#172144'} />
             </View>
             <View style = {styles.with1}>
-               <Button title='Transfer' color={'#172144'} />
+               {/* */}
+                <Transfer />
+
              </View>
          </View>
           </View>
@@ -89,6 +99,22 @@ function Wallet ({navigation}) {
         </View>
         </ScrollView>
       </SafeAreaView>
+
+
+
+
+
+
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={0}
+        snapPoints={snapPoints}
+      >
+        <View>
+          <Text>Hello</Text>
+        </View>
+      </BottomSheetModal>
+      </BottomSheetModalProvider>
     )
   }
 

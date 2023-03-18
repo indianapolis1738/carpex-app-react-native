@@ -18,7 +18,7 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
             }}
         />
         <Text>
-            {name}({short})
+            {name}({short.toUpperCase()})
         </Text>
         </View> 
         <Text>

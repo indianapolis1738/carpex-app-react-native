@@ -99,7 +99,7 @@ export default function Market() {
                     <View style={{flexDirection: 'row'}}>
                       <MaterialIcons name="arrow-drop-up" size={20} color="green" />
                       <Text style={{color: 'green'}}>
-                      {coins.price_change_percentage_24h}%
+                      {coins.price_change_percentage_24h.toFixed(2)}%
                       </Text> 
                      </View>
                 )

@@ -14,6 +14,7 @@ import { AuthContext } from "./pages/screens/context";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
 import 'react-native-gesture-handler';
+import calculator from "./pages/screens/calculator";
 
 
 const AuthStack = createStackNavigator();
@@ -30,7 +31,7 @@ const DashStackScreen = () => (
     tabBarActiveTintColor: '#172144',
   }}
   >
-    <DashStack.Screen  name="Dashboard" component={Dashboard}  />
+    <DashStack.Screen  name="Dashboards" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
     <DashStack.Screen name="Profile" component={Profile} />
   </DashStack.Navigator>
@@ -43,7 +44,7 @@ const WalletStackScreen = () => (
     tabBarActiveTintColor: '#172144',
   }}
   >
-    <WalletStack.Screen  name="Wallet" component={Wallet} />
+    <WalletStack.Screen  name="Wallets" component={Wallet} />
   </WalletStack.Navigator>
 )
 
@@ -70,6 +71,17 @@ const BlogStackScreen = () => (
   </BlogStack.Navigator>
 )
 
+const CaculatorStack = createStackNavigator();
+
+
+const CaculatortackScreen = () => (
+  <CaculatorStack.Navigator>
+    <CaculatorStack.Screen 
+      name = 'Calculator' component={calculator}
+    />
+  </CaculatorStack.Navigator>
+)
+
 
 
 const TabsScreen = () => (
@@ -84,7 +96,7 @@ const TabsScreen = () => (
     tabBarIcon: ({ color }) => (
       <MaterialCommunityIcons name="home" color={color} size={30} />
     ),
-  }} name="Dashboard" component={DashStackScreen} />
+  }} name="Dashboards" component={DashStackScreen} />
   <Tabs.Screen options={{
     tabBarLabel: 'Wallet',
     tabBarIcon: ({ color }) => (
@@ -96,7 +108,7 @@ const TabsScreen = () => (
     tabBarIcon: ({ color }) => (
       <MaterialCommunityIcons name="bitcoin" color={color} size={30} />
     ),
-  }} name="Market" component={MarketStackScreen} />
+  }} name="Markets" component={MarketStackScreen} />
 </Tabs.Navigator>
 )
 
@@ -147,12 +159,16 @@ export default () => {
           }}
         >
           <Drawer.Screen 
-           name="Home" 
+           name="Dashboard" 
            component={TabsScreen}
           />
           <Drawer.Screen 
-            name="Blog"
+            name="Blogs"
             component={BlogStackScreen}
+          />
+          <Drawer.Screen 
+            name="Calculator"
+            component={CaculatortackScreen}
           />
         </Drawer.Navigator>
       ) : (
