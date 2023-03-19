@@ -32,7 +32,8 @@ const Item = ({title}) => (
 
 function Wallet ({navigation}) {
 
-  const bottomSheetRef = useRef<BottomSheet>(null);
+   // ref
+   const bottomSheetModalRef = useRef (null);
 
   const snapPoints = useMemo(() => ['25%', '50%'], []);
 
@@ -99,10 +100,6 @@ function Wallet ({navigation}) {
         </View>
         </ScrollView>
       </SafeAreaView>
-
-
-
-
 
 
       <BottomSheetModal
