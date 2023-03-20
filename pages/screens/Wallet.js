@@ -2,9 +2,12 @@ import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,Statu
 import React, { Component, useEffect, useRef, useMemo } from 'react'
 import Line from '../../components/Line'
 import { MaterialIcons } from '@expo/vector-icons';
+import { FontAwesome } from '@expo/vector-icons';
 import Market from './homeMarket';
-import Transfer from './../../TransactionScreens/Transfer'
 import { BottomSheetModal, BottomSheetModalProvider,  } from '@gorhom/bottom-sheet';
+import TransferModal from '../../Modals/TransferModal';
+import WithdrawModal from '../../Modals/WithdrawModal';
+import DepositModal from '../../Modals/DepositModal';
 
 
 
@@ -35,22 +38,26 @@ function Wallet ({navigation}) {
    // ref
    const bottomSheetModalRef = useRef (null);
 
-  const snapPoints = useMemo(() => ['25%', '50%'], []);
+  const snapPoints = useMemo(() => ['95%']);
+
 
     function handlePresentModal() {
-      bottomSheetModalRef.current.present();
+      bottomSheetModalRef.current?.present();
     }
 
 
+
     return (
-      <BottomSheetModalProvider>
       <SafeAreaView style= {styles.page}>
         <View style = {styles.header}>
           <View>
           <Text style = {styles.wa}>Wallet</Text>
           <Text style = {styles.view}>View all your daily crypto stats and assets here</Text>
           </View>
-          <TouchableOpacity style={styles.menu} onPress= {handlePresentModal} >
+          <TouchableOpacity style={styles.history}>
+            <FontAwesome name="history" size={25} color="black" />
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.menu}  onPress= {() => navigation.toggleDrawer()} >
           <MaterialIcons name="menu" size={40} color="black" />
           </TouchableOpacity>
         </View>
@@ -66,15 +73,13 @@ function Wallet ({navigation}) {
           <Line/>
           <View style={styles.container}>
              <View style = {styles.with}>
-                <Button title='Deposit' color={'white'} />
+                <DepositModal/>
              </View>
             <View style = {styles.with1}>
-                <Button title='Withdraw' color={'#172144'} />
+                <WithdrawModal/>
             </View>
             <View style = {styles.with1}>
-               {/* */}
-                <Transfer />
-
+               <TransferModal/>
              </View>
          </View>
           </View>
@@ -99,19 +104,10 @@ function Wallet ({navigation}) {
           <Market/>
         </View>
         </ScrollView>
+
       </SafeAreaView>
 
-
-      <BottomSheetModal
-        ref={bottomSheetModalRef}
-        index={0}
-        snapPoints={snapPoints}
-      >
-        <View>
-          <Text>Hello</Text>
-        </View>
-      </BottomSheetModal>
-      </BottomSheetModalProvider>
+      
     )
   }
 
@@ -124,7 +120,7 @@ const styles = StyleSheet.create ({
   balance: {
     color: '#09012F',
     fontSize: '25%',
-    fontWeight: '400',
+    fontWeight: '600',
     marginTop: 10,
   },
   baldiv: {
@@ -160,6 +156,10 @@ const styles = StyleSheet.create ({
     backgroundColor: '#FFFFFF',
     flexDirection: 'row',
   },
+  history: {
+    marginTop: 20,
+    marginStart: 20,
+  },
   item: {
     width: 300,
     height: 130,
@@ -170,7 +170,7 @@ const styles = StyleSheet.create ({
     marginTop: 20,
   },
   menu: {
-    marginStart: 20,
+    marginStart: 25,
     marginTop: 10,
   },
   page: {
@@ -182,7 +182,7 @@ const styles = StyleSheet.create ({
   },
   total: {
     fontSize: '19%',
-    fontWeight: '400',
+    fontWeight: '600',
     color: '#09012F',
   },
   view: {
@@ -210,18 +210,19 @@ const styles = StyleSheet.create ({
     marginLeft: '2%',
     borderColor: '#E5E5E5',
     borderWidth: 2,
-    borderStyle: 'solid'
+    borderStyle: 'solid',
+    height: 40
   },
   with1: {
     backgroundColor: '#F0F2F9',
     borderRadius: 10,
-    textAlign: 'center',
     fontSize: '10',
     width: '30%',
     marginLeft: '2%',
     borderColor: '#E5E5E5',
     borderWidth: 2,
-    borderStyle: 'solid'
+    borderStyle: 'solid',
+    height: 40
   },
 })
 

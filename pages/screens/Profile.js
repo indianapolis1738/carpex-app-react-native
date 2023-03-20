@@ -13,7 +13,7 @@ const Profile = ({navigation}) => {
 
 
   const pressDash = () => {
-    navigation.navigate('Dashboard')
+    navigation.navigate('Dashboards')
   }
 
   const {SignOut} = React.useContext(AuthContext);
