@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput} from 'react-native';
+import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, Button} from 'react-native';
 
 class DepositModal extends Component {
   state = {
@@ -23,19 +23,25 @@ class DepositModal extends Component {
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => this.setState({modalVisible: !modalVisible})}>
-                <Text style={styles.textStyle}>Hide Modal</Text>
+                <Text style={styles.textStyle}>X</Text>
               </Pressable>
-
-               
-
-
+            <View style={styles.width}>
+             <Text style={styles.label}>
+                Wallet address: (Hold to copy)
+             </Text>
+             <View>
+             <Text selectable={true} style={styles.copywallet}>
+                174RoxLwdYWQDy7X1pSTvu32Wu3mfrpCTX
+             </Text>
+             </View>
+            </View>
             </View>
           </View>
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
           onPress={() => this.setState({modalVisible: true})}>
-          <Text style={styles.textStyle}>Deposit</Text>
+          <Text style={styles.textStyl}>Deposit</Text>
         </Pressable>
       </View>
     );
@@ -69,15 +75,43 @@ const styles = StyleSheet.create({
     backgroundColor: 'transparent',
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: 'transparent',
+    marginStart: '90%',
+    marginBottom: 40,
+  },
+  copywallet: {
+    fontSize: 20,
+    marginTop: 10
+  },
+  
+  label: {
+    marginTop: 20,
+    fontSize: 18,
   },
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
   },
+  send: {
+    height: 45,
+    width: '90%',
+    backgroundColor: '#172144',
+    borderRadius: 10,
+    marginTop: 30,
+    alignContent: 'center'
+  },
   textStyle: {
+    fontSize: 35,
+    fontWeight: '700'
+  },
+  textStyl: {
     fontSize: 19,
-    color: 'white'
+    color: 'white',
+  },
+  width: {
+    width: '100%',
+    marginStart: 30,
+    marginTop: 30,
   },
 });
 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, Button} from 'react-native';
+import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, Button, } from 'react-native';
 
 class WithdrawModal extends Component {
   state = {
@@ -26,51 +26,60 @@ class WithdrawModal extends Component {
                 <Text style={styles.textStyle}>X</Text>
               </Pressable>
             <View style={styles.width}>
-             <Text>
+             <Text style={styles.label}>
                 Wallet Address: 
              </Text>
               <TextInput
                     style={styles.input}
                 />
 
-             <Text>
+             <Text style={styles.label}>
                 Asset to transfer (Choose from your asset):
              </Text>
                 <TextInput
                     style={styles.input}
                 />
 
-                <Text>
+                <Text style={styles.label}>
                     Amount to transfer:
                 </Text>
 
                 <TextInput
                     style={styles.input}
+                    keyboardType="numeric"
                 />
 
-                <Text>
+                <Text style={styles.label}>
                     Transaction PIN:
                 </Text>
 
 
-                <View style={styles.pinModal}>
+              <View style={styles.pinModal}>
                 <TextInput
                     style={styles.pin}
+                    secureTextEntry
+                    keyboardType="numeric"
                 />
                 <TextInput
                     style={styles.pin}
+                    secureTextEntry
+                    keyboardType="numeric"
                 />
                 <TextInput
                     style={styles.pin}
+                    secureTextEntry
+                    keyboardType="numeric"
                 />
                 <TextInput
                     style={styles.pin}
+                    secureTextEntry
+                    keyboardType="numeric"
                 />
-                </View>
+              </View>
 
 
                 <View style={styles.send}>
-                    <Button title='Send'/>
+                    <Button title='Send' color={'white'}/>
                 </View>
                 </View>
             </View>
@@ -126,6 +135,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#F2F2F2',
     borderRadius: '4px',
   },
+  label: {
+    marginTop: 20,
+  },
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
@@ -133,19 +145,24 @@ const styles = StyleSheet.create({
   pin: {
     width: 40,
     height: 40,
-    backgroundColor: 'blue',
+    backgroundColor: '#F2F2F2',
+    margin: 17,
+    textAlign: 'center',
+    borderRadius: 10,
   },
   pinModal: {
     flexDirection: 'row',
     height: 50,
     width: '100%',
-    backgroundColor: 'yellow'
+    alignContent: 'space-between',
+    marginBottom: 20,
   },
   send: {
-    height: 40,
+    height: 45,
     width: '90%',
     backgroundColor: '#172144',
     borderRadius: 10,
+    marginTop: 30,
   },
   textStyle: {
     fontSize: 35,
@@ -156,7 +173,8 @@ const styles = StyleSheet.create({
   },
   width: {
     width: '100%',
-    marginStart: 10,
+    marginStart: 30,
+    marginTop: 30,
   },
 });
 

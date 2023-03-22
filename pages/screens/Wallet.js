@@ -80,9 +80,9 @@ function Wallet ({navigation}) {
             </View>
             <View style = {styles.with1}>
                <TransferModal/>
-             </View>
+            </View>
          </View>
-          </View>
+        </View>
         </View>
         <View style={styles.carousel}>
           <Text style={styles.assets}>
