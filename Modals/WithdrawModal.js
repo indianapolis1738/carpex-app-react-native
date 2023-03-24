@@ -20,11 +20,16 @@ class WithdrawModal extends Component {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+            <View style={{flexDirection: 'row', width: '100%'}}>
+              <Text style={{marginTop: 15, fontSize: 18,}}>
+                Withdraw funds
+              </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => this.setState({modalVisible: !modalVisible})}>
                 <Text style={styles.textStyle}>X</Text>
               </Pressable>
+              </View>
             <View style={styles.width}>
              <Text style={styles.label}>
                 Wallet Address: 
@@ -34,7 +39,7 @@ class WithdrawModal extends Component {
                 />
 
              <Text style={styles.label}>
-                Asset to transfer (Choose from your asset):
+                Asset to withdraw (Choose from your asset):
              </Text>
                 <TextInput
                     style={styles.input}
@@ -79,7 +84,7 @@ class WithdrawModal extends Component {
 
 
                 <View style={styles.send}>
-                    <Button title='Send' color={'white'}/>
+                    <Button title='Withdraw' color={'white'}/>
                 </View>
                 </View>
             </View>
@@ -123,7 +128,7 @@ const styles = StyleSheet.create({
   },
   buttonClose: {
     backgroundColor: 'transparent',
-    marginStart: '90%',
+    marginStart: '60%',
     marginBottom: 40,
   },
   

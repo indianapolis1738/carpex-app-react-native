@@ -20,11 +20,16 @@ class DepositModal extends Component {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+            <View style={{flexDirection: 'row', width: '100%'}}>
+              <Text style={{marginTop: 15, fontSize: 18,}}>
+                Deposit funds
+              </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => this.setState({modalVisible: !modalVisible})}>
                 <Text style={styles.textStyle}>X</Text>
               </Pressable>
+              </View>
             <View style={styles.width}>
              <Text style={styles.label}>
                 Wallet address: (Hold to copy)
@@ -54,6 +59,27 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+buttonOpen: {
+    backgroundColor: 'transparent',
+  },
+  buttonClose: {
+    backgroundColor: 'transparent',
+    marginStart: '60%',
+    marginBottom: 40,
+  },
+  copywallet: {
+    fontSize: 20,
+    marginTop: 10
+  },
+  
+  label: {
+    marginTop: 20,
+    fontSize: 18,
+  },
+  modalText: {
+    marginBottom: 15,
+    textAlign: 'center',
+  },
   modalView: {
     marginTop: '5%',
     backgroundColor: 'white',
@@ -70,27 +96,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 5,
-  },
-  buttonOpen: {
-    backgroundColor: 'transparent',
-  },
-  buttonClose: {
-    backgroundColor: 'transparent',
-    marginStart: '90%',
-    marginBottom: 40,
-  },
-  copywallet: {
-    fontSize: 20,
-    marginTop: 10
-  },
-  
-  label: {
-    marginTop: 20,
-    fontSize: 18,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
   },
   send: {
     height: 45,

@@ -84,7 +84,7 @@ class TransferModal extends Component {
 
 
                 <View style={styles.send}>
-                    <Button title='Send' color={'white'}/>
+                    <Button title='Transfer' color={'white'}/>
                 </View>
                 </View>
             </View>
@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
- 
   buttonOpen: {
     backgroundColor: 'transparent',
   },
@@ -115,7 +114,6 @@ const styles = StyleSheet.create({
     marginStart: '60%',
     marginBottom: 40,
   },
-  
   input: {
     height: 49,
     width: '90%',
