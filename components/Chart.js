@@ -1,4 +1,4 @@
-import { View, Text, Image, StyleSheet, Dimensions } from 'react-native'
+import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { LineChart } from 'react-native-chart-kit'
 
@@ -49,10 +49,19 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
           Market Capitalization: ₦{marketcap.toLocaleString()}
         </Text>
        </View>
-       <View>
-        <Text>
-
-        </Text>
+       <View style={styles.buyDiv}>
+        <View style={styles.buyButtons}>
+          <TouchableOpacity style={styles.buttonBuy}>
+            <Text style={styles.buyText}>
+              Buy
+            </Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.buttonBuy}>
+            <Text style={styles.buyText}>
+              Sell
+            </Text>
+          </TouchableOpacity>
+        </View>
        </View>
       </View>
 
@@ -62,6 +71,27 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
 
 
 const styles = StyleSheet.create({
+  buttonBuy: {
+    width: 95,
+    backgroundColor: 'rgba(23, 33, 68, 1)',
+    margin: 45,
+    textAlign: 'center',
+    height: 35,
+    borderRadius: 10,
+  },
+  buyButtons: {
+    flexDirection: 'row',
+  },
+  buyDiv: {
+    flexDirection: 'row',
+    marginTop: '130%'
+  },
+  buyText: {
+    textAlign: 'center',
+    marginTop: 8,
+    color: 'white',
+    fontSize: 17,
+  },
   capitalization: {
     fontSize: 15,
     fontWeight: '500',
