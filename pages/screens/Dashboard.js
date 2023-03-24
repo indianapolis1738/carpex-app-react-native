@@ -10,10 +10,12 @@ import Notifications from '../../components/notifications';
 
 const listTab = [
   {
-    status: 'Buy'
+    status: 'Buy',
+    content: 'buy'
   },
   {
-    status: 'Sell'
+    status: 'Sell',
+    content: 'sell'
   }
 ]
 
@@ -134,6 +136,9 @@ function Dashboard ({navigation})  {
             <Text style={styles.textTab}>
               {e.status}
             </Text>
+            <Text>
+            {e.content}
+            </Text>
           </TouchableOpacity>
             ))
           }
@@ -153,7 +158,7 @@ function Dashboard ({navigation})  {
         </View>
           <Market/>
       </View>
-      <Button title='Blog' onPress={pressBlog}/>
+     
       </ScrollView>
     </SafeAreaView>
   )
