@@ -20,11 +20,16 @@ class TransferModal extends Component {
           }}>
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
+              <View style={{flexDirection: 'row', width: '100%'}}>
+              <Text style={{marginTop: 20, fontSize: 18,}}>
+                Transfer funds
+              </Text>
               <Pressable
                 style={[styles.button, styles.buttonClose]}
                 onPress={() => this.setState({modalVisible: !modalVisible})}>
                 <Text style={styles.textStyle}>X</Text>
               </Pressable>
+              </View>
             <View style={styles.width}>
              <Text style={styles.label}>
                 User ID: 
@@ -101,29 +106,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
-  modalView: {
-    marginTop: '5%',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    height: '90%',
-    width: '100%',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
+ 
   buttonOpen: {
     backgroundColor: 'transparent',
   },
   buttonClose: {
     backgroundColor: 'transparent',
-    marginStart: '90%',
+    marginStart: '60%',
     marginBottom: 40,
   },
   
@@ -142,6 +131,23 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: 'center',
+  },
+  modalView: {
+    marginTop: '5%',
+    backgroundColor: 'white',
+    borderRadius: 20,
+    padding: 35,
+    alignItems: 'center',
+    shadowColor: '#000',
+    height: '90%',
+    width: '100%',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   pin: {
     width: 40,
