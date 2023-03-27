@@ -15,6 +15,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
 import 'react-native-gesture-handler';
 import calculator from "./pages/screens/calculator";
+import Username from "./components/Username";
 
 
 const AuthStack = createStackNavigator();
@@ -23,7 +24,6 @@ const DashStack = createStackNavigator();
 const WalletStack = createStackNavigator();
 const MarketStack = createStackNavigator();
 const Drawer = createDrawerNavigator();
-
 const DashStackScreen = () => (
   <DashStack.Navigator 
   screenOptions={{
@@ -34,6 +34,7 @@ const DashStackScreen = () => (
     <DashStack.Screen  name="Dashboards" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
     <DashStack.Screen name="Profile" component={Profile} />
+    <DashStackScreen name= 'Edit' component={Username}/>
   </DashStack.Navigator>
 ) 
 
@@ -81,6 +82,8 @@ const CaculatortackScreen = () => (
     />
   </CaculatorStack.Navigator>
 )
+
+
 
 
 

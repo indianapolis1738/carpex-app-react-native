@@ -1,4 +1,4 @@
-import { SafeAreaView, Text,StatusBar, View, StyleSheet, Image, Button, Pressable } from 'react-native'
+import { SafeAreaView, Text,StatusBar, View, StyleSheet, Image, Button, Pressable, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome5 } from '@expo/vector-icons';
@@ -14,6 +14,10 @@ const Profile = ({navigation}) => {
 
   const pressDash = () => {
     navigation.navigate('Dashboards')
+  }
+
+  const editName = () => {
+    navigation.navigate('Edit')
   }
 
   const {SignOut} = React.useContext(AuthContext);
@@ -35,7 +39,7 @@ const Profile = ({navigation}) => {
       </View>
 
       <View style={{flexDirection: 'row', marginTop: 50, marginStart: 20,}}>
-        <View>
+        <TouchableOpacity>
         <Image 
           source={{uri: 'https://lh3.googleusercontent.com/a/AGNmyxYRX-4BlLMfVvFvDtl3kHs70DiJYOt5UWAcyd8=s360',}}
           style={{
@@ -45,9 +49,9 @@ const Profile = ({navigation}) => {
           }}
         />
         <FontAwesome name="edit" size={24} color="black" style={{marginStart: 60, marginTop: -20}} />
-        </View>
+        </TouchableOpacity>
         
-        <View style={styles.username}>
+        <View style={styles.username} >
           <Text style={{fontSize: 25, fontWeight: '500'}}>
             Dada Iyanuoluwa
           </Text>
@@ -64,7 +68,7 @@ const Profile = ({navigation}) => {
           </Text>
         </View>
 
-        <View style={styles.settingsRow}>
+        <TouchableOpacity style={styles.settingsRow} onPress = {editName}>
           <View style={styles.icon}>
             <FontAwesome5 name="user-alt" size={25} color="black" style={styles.iconIcon} />
           </View>
@@ -72,11 +76,11 @@ const Profile = ({navigation}) => {
             <Text style={{fontSize: 20, fontWeight: '350'}}>
               Personal Information
             </Text>
-            <Text style={{ fontSize: 16, color: 'black'}}>
+            <Text style={{ fontSize: 16, color: 'black'}} >
               @CarpEx
             </Text>
           </View>
-        </View>
+        </TouchableOpacity>
 
         <View style={styles.settingsRow}>
           <View style={styles.icon}>

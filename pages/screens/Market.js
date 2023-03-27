@@ -65,7 +65,6 @@ export default function Market() {
       >
         { (
           data.map((coins) => (
-            
             <TouchableOpacity  style={styles.market} onPress = {() => openModal(coins)} >
               <View  >
                 <Image 
@@ -99,7 +98,7 @@ export default function Market() {
                     <View style={{flexDirection: 'row'}}>
                       <MaterialIcons name="arrow-drop-up" size={20} color="green" />
                       <Text style={{color: 'green'}}>
-                      {coins.price_change_percentage_24h.toFixed(2)}%
+                      {coins.price_change_percentage_24h}%
                       </Text> 
                      </View>
                 )
