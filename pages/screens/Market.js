@@ -40,7 +40,7 @@ export default function Market() {
 
   const [data,setData] = useState([])
 
-  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=250&page=1&sparkline=true&price_change_percentage=7d'
+  const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=200&page=1&sparkline=true&price_change_percentage=7d'
 
   useEffect (()=> {
     fetch(url) 
@@ -98,7 +98,7 @@ export default function Market() {
                     <View style={{flexDirection: 'row'}}>
                       <MaterialIcons name="arrow-drop-up" size={20} color="green" />
                       <Text style={{color: 'green'}}>
-                      {coins.price_change_percentage_24h}%
+                      {coins.price_change_percentage_24h.toFixed(2)}%
                       </Text> 
                      </View>
                 )

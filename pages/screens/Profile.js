@@ -16,9 +16,7 @@ const Profile = ({navigation}) => {
     navigation.navigate('Dashboards')
   }
 
-  const editName = () => {
-    navigation.navigate('Edit')
-  }
+  
 
   const {SignOut} = React.useContext(AuthContext);
 
@@ -68,7 +66,7 @@ const Profile = ({navigation}) => {
           </Text>
         </View>
 
-        <TouchableOpacity style={styles.settingsRow} onPress = {editName}>
+        <TouchableOpacity style={styles.settingsRow} >
           <View style={styles.icon}>
             <FontAwesome5 name="user-alt" size={25} color="black" style={styles.iconIcon} />
           </View>
