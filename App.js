@@ -14,7 +14,7 @@ import { AuthContext } from "./pages/screens/context";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
 import 'react-native-gesture-handler';
-import calculator from "./pages/screens/calculator";
+import calculator from "./pages/screens/Calculator";
 
 
 const AuthStack = createStackNavigator();

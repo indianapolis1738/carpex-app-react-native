@@ -1,29 +1,58 @@
-import { SafeAreaView, StatusBar, Button, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image } from 'react-native'
+import { SafeAreaView, StatusBar, Button, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react'
 import { AuthContext } from './context'
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
 import Notifications from '../../components/notifications';
+import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
+import Buy from '../../Modals/Buy';
+import Sell from '../../Modals/Sell';
 
 
 
-const listTab = [
-  {
-    status: 'Buy',
-    content: 'buy'
-  },
-  {
-    status: 'Sell',
-    content: 'sell'
-  }
-]
 
+const FirstRoute = () => (
+  <Buy />
+);
+
+const SecondRoute = () => (
+  <Sell />
+);
 
 
 
 
 function Dashboard ({navigation})  {
+
+
+
+  
+const renderScene = SceneMap({
+  first: FirstRoute,
+  second: SecondRoute,
+});
+
+
+
+const renderTabBar = props => (
+  <TabBar
+      {...props}
+      activeColor={'#172144'}
+      inactiveColor={'#979797'}
+      style={{marginTop:25, backgroundColor:'white'}}
+  />
+);
+
+
+
+  const layout = useWindowDimensions();
+
+  const [index, setIndex] = React.useState(0);
+  const [routes] = React.useState([
+    { key: 'first', title: 'Buy' },
+    { key: 'second', title: 'Sell' },
+  ]);
 
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -130,18 +159,13 @@ function Dashboard ({navigation})  {
       </View>
       <View style={styles.buydiv}>
         <View  style={styles.listTab}>
-          {
-            listTab.map(e=> (
-          <TouchableOpacity style={[styles.btnTab, status === e.status && styles.btnTabActive]} onPress={() => setStatusFilter(e.status)}>
-            <Text style={styles.textTab}>
-              {e.status}
-            </Text>
-            <Text>
-            {e.content}
-            </Text>
-          </TouchableOpacity>
-            ))
-          }
+        <TabView
+      	navigationState={{ index, routes }}
+      	renderScene={renderScene}
+      	renderTabBar={renderTabBar}
+      	onIndexChange={setIndex}
+      	initialLayout={{ width: layout.width }}
+  	/>
           </View>
       </View>
       <View style={styles.market}>
@@ -252,6 +276,7 @@ const styles = StyleSheet.create({
       backgroundColor: 'transparent',
       flexDirection: 'row',
       alignSelf: 'center',
+      height: 500,
     },
     market: {
       backgroundColor: 'transparent',

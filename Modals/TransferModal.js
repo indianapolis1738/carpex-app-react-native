@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, Button} from 'react-native';
+import Success from './Success';
 
 class TransferModal extends Component {
   state = {
@@ -84,7 +85,7 @@ class TransferModal extends Component {
 
 
                 <View style={styles.send}>
-                    <Button title='Transfer' color={'white'}/>
+                    <Success/>
                 </View>
                 </View>
             </View>

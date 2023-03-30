@@ -5,6 +5,9 @@ import { MaterialIcons } from '@expo/vector-icons';
 
 export default function homeMarket() {
 
+  const [isLoading, setLoading] = useState(true);
+
+
   const [data,setData] = useState([])
 
   const url = 'https://api.coingecko.com/api/v3/coins/markets?vs_currency=ngn&order=market_cap_desc&per_page=6&page=1&sparkline=false&price_change_percentage=1h'
@@ -14,6 +17,7 @@ export default function homeMarket() {
     .then((response)=>response.json())
     .then((json)=> setData(json))
     .catch((error)=>console.error(error))
+    .finally(setLoading(false))
   }, [])
 
   return (
@@ -24,9 +28,14 @@ export default function homeMarket() {
         <Text style={styles.headerName}>Trade</Text>
       </View>
       <View>
-        { (
+        {
+        isLoading ? 
+        <Text>
+          Loading
+        </Text>
+        : (
           data.map((coins) => (
-            <View style={styles.market}>
+            <View style={styles.market} key={idx}>
                 <Text>
                     {coins.market_cap_rank}
                 </Text>
@@ -62,7 +71,7 @@ export default function homeMarket() {
                   <View style={{flexDirection: 'row'}}>
                   <MaterialIcons name="arrow-drop-up" size={20} color="green" />
                    <Text style={{color: 'green'}}>
-                   {coins.price_change_percentage_24h.toFixed(2)}%
+                   {coins.price_change_percentage_24h}%
                  </Text> 
                  </View>
                 )
