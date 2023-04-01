@@ -35,7 +35,7 @@ export default function homeMarket() {
         </Text>
         : (
           data.map((coins) => (
-            <View style={styles.market} key={idx}>
+            <View style={styles.market} key={coins.id}>
                 <Text>
                     {coins.market_cap_rank}
                 </Text>

@@ -1,11 +1,29 @@
 import { View, Text, Image, StyleSheet, Dimensions, TouchableOpacity } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
 import { LineChart } from 'react-native-chart-kit'
+import {
+  BottomSheetModal,
+  BottomSheetModalProvider,
+} from '@gorhom/bottom-sheet';
+
+
+
+
 
 const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marketCapRank, marketcap }) => {
 
+
+  const bottomSheetModalRef = useRef(null);
+
+  const snapPoints = ["100%"];
+  
+  function openModal() {
+      bottomSheetModalRef.current?.present();
+  }
+
   
   return (
+    <BottomSheetModalProvider>
     <View>
       <View style={styles.mainDiv}>
         <View style={styles.titles}>
@@ -56,7 +74,7 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
               Buy
             </Text>
           </TouchableOpacity>
-          <TouchableOpacity style={styles.buttonBuy}>
+          <TouchableOpacity style={styles.buttonBuy} onPress={openModal}>
             <Text style={styles.buyText}>
               Sell
             </Text>
@@ -64,8 +82,19 @@ const Chart = ({currentPrice, logoUrl, name,priceChange, sparkline, short, marke
         </View>
        </View>
       </View>
-
+      <BottomSheetModal
+        ref={bottomSheetModalRef}
+        index={0}
+        snapPoints={snapPoints}
+      >
+        <View>
+          <Text>
+            Hello
+          </Text>
+        </View>
+      </BottomSheetModal>
     </View>
+    </BottomSheetModalProvider>
   )
 }
 

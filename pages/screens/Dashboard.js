@@ -1,6 +1,5 @@
-import { SafeAreaView, StatusBar, Button, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image, useWindowDimensions } from 'react-native'
+import { SafeAreaView, StatusBar, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image, useWindowDimensions } from 'react-native'
 import React, { useState } from 'react'
-import { AuthContext } from './context'
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
@@ -27,6 +26,9 @@ function Dashboard ({navigation})  {
 
 
 
+
+
+  
   
 const renderScene = SceneMap({
   first: FirstRoute,
@@ -70,8 +72,6 @@ const renderTabBar = props => (
     setStatus(status)
   }
 
-  
-  const {SignOut} = React.useContext(AuthContext);
 
   const pressBlog = () => {
     navigation.navigate("Blog")
@@ -159,14 +159,14 @@ const renderTabBar = props => (
       </View>
       <View style={styles.buydiv}>
         <View  style={styles.listTab}>
-        <TabView
-      	navigationState={{ index, routes }}
-      	renderScene={renderScene}
-      	renderTabBar={renderTabBar}
-      	onIndexChange={setIndex}
-      	initialLayout={{ width: layout.width }}
-  	/>
-          </View>
+            <TabView
+            navigationState={{ index, routes }}
+            renderScene={renderScene}
+            renderTabBar={renderTabBar}
+            onIndexChange={setIndex}
+            initialLayout={{ width: layout.width }}
+            />
+        </View>
       </View>
       <View style={styles.market}>
         <View style={styles.marketDiv}>

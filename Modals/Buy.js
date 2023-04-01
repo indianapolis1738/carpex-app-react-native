@@ -1,6 +1,9 @@
  import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
  import React from 'react'
- import { MaterialCommunityIcons } from '@expo/vector-icons';
+
+ 
+ 
+ 
  
  const Buy = () => {
     
@@ -35,12 +38,12 @@
         <Text style={{color:"white", alignSelf: 'center', marginTop: '10%', fontSize: 20}}>
             Buy
         </Text>
-       </TouchableOpacity>
+   </TouchableOpacity>
      </View>
    )
  }
  
- export default Buy
+ export default Buy;
  
  const styles = StyleSheet.create({
     buyButton: {

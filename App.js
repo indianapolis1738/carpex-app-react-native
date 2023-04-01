@@ -94,26 +94,26 @@ const TabsScreen = () => (
     headerShown: false,
     tabBarActiveTintColor: '#172144',
   }}
->
-  <Tabs.Screen  options={{
-    tabBarLabel: 'Dashboard',
-    tabBarIcon: ({ color }) => (
-      <MaterialCommunityIcons name="home" color={color} size={30} />
-    ),
-  }} name="Dashboards" component={DashStackScreen} />
-  <Tabs.Screen options={{
-    tabBarLabel: 'Wallet',
-    tabBarIcon: ({ color }) => (
-      <MaterialCommunityIcons name="wallet" color={color} size={30} />
-    ),
-  }} name="Wallet" component={WalletStackScreen} />
-  <Tabs.Screen options={{
-    tabBarLabel: 'Market',
-    tabBarIcon: ({ color }) => (
-      <MaterialCommunityIcons name="bitcoin" color={color} size={30} />
-    ),
-  }} name="Markets" component={MarketStackScreen} />
-</Tabs.Navigator>
+  >
+    <Tabs.Screen  options={{
+      tabBarLabel: 'Dashboards',
+      tabBarIcon: ({ color }) => (
+        <MaterialCommunityIcons name="home" color={color} size={30} />
+      ),
+    }} name="Dashboards" component={DashStackScreen} />
+    <Tabs.Screen options={{
+      tabBarLabel: 'Wallet',
+      tabBarIcon: ({ color }) => (
+        <MaterialCommunityIcons name="wallet" color={color} size={30} />
+      ),
+    }} name="Wallet" component={WalletStackScreen} />
+    <Tabs.Screen options={{
+      tabBarLabel: 'Market',
+      tabBarIcon: ({ color }) => (
+        <MaterialCommunityIcons name="bitcoin" color={color} size={30} />
+      ),
+    }} name="Markets" component={MarketStackScreen} />
+  </Tabs.Navigator>
 )
 
 

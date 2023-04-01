@@ -7,7 +7,6 @@ import {
   BottomSheetModalProvider,
 } from '@gorhom/bottom-sheet';
 import Chart from '../../components/Chart';
-import moment from 'moment/moment';
 
 
 
@@ -74,7 +73,7 @@ export default function Market() {
         </Text>
           : (
           data.map((coins) => (
-            <TouchableOpacity  style={styles.market} onPress = {() => openModal(coins)} key={idx}>
+            <TouchableOpacity  style={styles.market} onPress = {() => openModal(coins)} key={coins.id}>
               <View  >
                 <Image 
                   source={{ uri: coins.image}}

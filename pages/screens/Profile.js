@@ -6,7 +6,6 @@ import { EvilIcons } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
-
 import { AuthContext } from '../screens/context'
 
 const Profile = ({navigation}) => {
@@ -31,7 +30,7 @@ const Profile = ({navigation}) => {
             Account Details
           </Text>
           <Text style={{fontSize: 17, color: '#8C8C8C', marginTop: 5,}}>
-             View all your account information  here
+             View all your account information here.
           </Text>
         </View>
       </View>
