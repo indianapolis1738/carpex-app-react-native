@@ -11,12 +11,17 @@ const FirstRoute = () => (
 );
 
 const SecondRoute = () => (
-  <Profile/>
+  <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
+);
+
+const ThirdRoute = () => (
+  <View style={{ flex: 1, backgroundColor: '#ff4081' }} />
 );
 
 const renderScene = SceneMap({
   first: FirstRoute,
   second: SecondRoute,
+  third: ThirdRoute,
 });
 
 export default function calculator() {
@@ -26,6 +31,7 @@ export default function calculator() {
   const [routes] = React.useState([
     { key: 'first', title: 'First' },
     { key: 'second', title: 'Second' },
+    { key: 'third', title: 'Third' },
   ]);
 
   return (
