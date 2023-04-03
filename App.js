@@ -36,6 +36,7 @@ const DashStackScreen = () => (
     <DashStack.Screen  name="Dashboards" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
     <DashStack.Screen name="Profile" component={Profile} />
+    
   </DashStack.Navigator>
 ) 
 
