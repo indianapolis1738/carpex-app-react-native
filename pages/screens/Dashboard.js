@@ -155,7 +155,7 @@ const renderTabBar = props => (
         </View>
       </View>
       <View style={styles.buydiv}>
-        <View  style={styles.listTab}>
+        
             <TabView
             navigationState={{ index, routes }}
             renderScene={renderScene}
@@ -163,7 +163,6 @@ const renderTabBar = props => (
             onIndexChange={setIndex}
             initialLayout={{ width: layout.width }}
             />
-        </View>
       </View>
       <View style={styles.market}>
         <View style={styles.marketDiv}>
