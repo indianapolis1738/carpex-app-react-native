@@ -15,6 +15,7 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
 import 'react-native-gesture-handler';
 import calculator from "./pages/screens/Calculator";
+import Buy from "./Modals/Buy";
 
 
 const AuthStack = createStackNavigator();
@@ -36,7 +37,7 @@ const DashStackScreen = () => (
     <DashStack.Screen  name="Dashboards" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
     <DashStack.Screen name="Profile" component={Profile} />
-    
+    <DashStack.Screen name="Trade" component={Buy} />
   </DashStack.Navigator>
 ) 
 
@@ -94,10 +95,11 @@ const TabsScreen = () => (
   screenOptions={{
     headerShown: false,
     tabBarActiveTintColor: '#172144',
+    tabBarLabelStyle:{fontSize: 11}
   }}
   >
     <Tabs.Screen  options={{
-      tabBarLabel: 'Dashboards',
+      tabBarLabel: 'Dashboard',
       tabBarIcon: ({ color }) => (
         <MaterialCommunityIcons name="home" color={color} size={30} />
       ),
@@ -159,9 +161,16 @@ export default () => {
 
       {userToken ? (
         <Drawer.Navigator 
-          screenOptions={{
+            screenOptions={{
             headerShown: false,
-          }}
+            drawerPosition: 'left',
+            drawerType: 'front',
+            swipeEdgeWidth: '100%',
+            drawerStyle: {
+              height: '100%',
+              width: '100%'
+            }
+            }}
         >
           <Drawer.Screen 
            name="Dashboard" 

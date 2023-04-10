@@ -73,18 +73,15 @@ const renderTabBar = props => (
   }
 
 
-  const pressBlog = () => {
-    navigation.navigate("Blog")
-  }
 
   const pressMarket = () => {
     navigation.navigate('Market')
-  }
+  };
 
 
   const pressProfile = () => {
     navigation.navigate('Profile')
-  }
+  };
 
 
   return (

@@ -1,7 +1,6 @@
  import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native'
  import React from 'react'
 
-  
  
  
  
@@ -35,10 +34,10 @@
         </View>
        </View>
        <TouchableOpacity style={styles.buyButton}>
-        <Text style={{color:"white", alignSelf: 'center', marginTop: '10%', fontSize: 20}}>
-            Buy
-        </Text>
-   </TouchableOpacity>
+            <Text style={{color:"white", alignSelf: 'center', marginTop: '10%', fontSize: 20}}>
+                Buy
+            </Text>
+         </TouchableOpacity>
      </View>
    )
  }
