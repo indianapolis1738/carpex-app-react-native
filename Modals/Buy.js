@@ -4,7 +4,10 @@
  
  
  
- const Buy = () => {
+ const Buy = ({navigation}) => {
+
+  
+    
     
    return (
      <View style={styles.BuyModal}>
@@ -33,7 +36,10 @@
             </Text>
         </View>
        </View>
-       <TouchableOpacity style={styles.buyButton}>
+       <TouchableOpacity style={styles.buyButton}  onPress={() => {
+        // Navigate using the `navigation` prop that you received
+        navigation.navigate('Ads');
+      }}>
             <Text style={{color:"white", alignSelf: 'center', marginTop: '10%', fontSize: 20}}>
                 Buy
             </Text>

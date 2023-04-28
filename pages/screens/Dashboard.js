@@ -4,57 +4,42 @@ import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
 import Notifications from '../../components/notifications';
-import { TabView, SceneMap, TabBar } from 'react-native-tab-view';
 import Buy from '../../Modals/Buy';
 import Sell from '../../Modals/Sell';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import { createStackNavigator } from '@react-navigation/stack';
 
 
+const Tab = createMaterialTopTabNavigator();
+const TradeStack = createStackNavigator();
+const TradeStak = createStackNavigator();
 
+const TradeStackScreen = () => (
+  <TradeStack.Navigator
+  screenOptions={{
+    headerShown: false,
+    tabBarActiveTintColor: '#172144',
+  }}
+  >
+    <TradeStack.Screen name='buy' component={Buy}/>
+  </TradeStack.Navigator>
+)
 
-const FirstRoute = () => (
-  <Buy />
-);
-
-const SecondRoute = () => (
-  <Sell />
-);
-
+const TradeStakScreen = () => (
+  <TradeStak.Navigator
+  screenOptions={{
+    headerShown: false,
+    tabBarActiveTintColor: '#172144',
+  }}
+  >
+    <TradeStak.Screen name='Sell' component={Sell}/>
+  </TradeStak.Navigator>
+)
 
 
 
 function Dashboard ({navigation})  {
 
-
-
-
-
-  
-  
-const renderScene = SceneMap({
-  first: FirstRoute,
-  second: SecondRoute,
-});
-
-
-
-const renderTabBar = props => (
-  <TabBar
-      {...props}
-      activeColor={'#172144'}
-      inactiveColor={'#979797'}
-      style={{marginTop:25, backgroundColor:'white'}}
-  />
-);
-
-
-
-  const layout = useWindowDimensions();
-
-  const [index, setIndex] = React.useState(0);
-  const [routes] = React.useState([
-    { key: 'first', title: 'Buy' },
-    { key: 'second', title: 'Sell' },
-  ]);
 
 
   const [refreshing, setRefreshing] = React.useState(false);
@@ -85,7 +70,7 @@ const renderTabBar = props => (
 
 
   return (
-    <SafeAreaView style= {{padding: 3, height: '100%',}}>
+    <SafeAreaView style= {{padding: 3,}}>
       <StatusBar barStyle="dark-content"/>
       <View style= {styles.div}>
        <View style={styles.dashdiv}>
@@ -155,14 +140,11 @@ const renderTabBar = props => (
         </View>
       </View>
       <View style={styles.buydiv}>
-        
-            <TabView
-            navigationState={{ index, routes }}
-            renderScene={renderScene}
-            renderTabBar={renderTabBar}
-            onIndexChange={setIndex}
-            initialLayout={{ width: layout.width }}
-            />
+      <Tab.Navigator>
+          <Tab.Screen name="Buy" component={TradeStackScreen} />
+          <Tab.Screen name="Sell" component={TradeStakScreen} />
+      </Tab.Navigator>
+           
       </View>
       <View style={styles.market}>
         <View style={styles.marketDiv}>

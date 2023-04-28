@@ -2,7 +2,7 @@ import { Button, StyleSheet, Text, TextInput, TouchableOpacity, View } from 'rea
 import React from 'react'
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-const Sell = () => {
+const Sell = ({navigation}) => {
    
   return (
     <View style={styles.BuyModal}>
@@ -31,7 +31,10 @@ const Sell = () => {
            </Text>
        </View>
       </View>
-      <TouchableOpacity style={styles.buyButton}>
+      <TouchableOpacity style={styles.buyButton}  onPress={() => {
+        // Navigate using the `navigation` prop that you received
+        navigation.navigate('Ads');
+      }}>
        <Text style={{color:"white", alignSelf: 'center', marginTop: '10%', fontSize: 20}}>
            Sell
        </Text>

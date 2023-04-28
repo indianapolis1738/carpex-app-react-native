@@ -15,7 +15,8 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
 import 'react-native-gesture-handler';
 import calculator from "./pages/screens/Calculator";
-import Buy from "./Modals/Buy";
+import Ads from "./Modals/Ads";
+import { View, Text } from "react-native";
 
 
 const AuthStack = createStackNavigator();
@@ -37,7 +38,7 @@ const DashStackScreen = () => (
     <DashStack.Screen  name="Dashboards" component={Dashboard}  />
     <DashStack.Screen name="Blog" component={Blog} />
     <DashStack.Screen name="Profile" component={Profile} />
-    <DashStack.Screen name="Trade" component={Buy} />
+    <DashStack.Screen name="Ads" component={Ads}/>
   </DashStack.Navigator>
 ) 
 
@@ -168,7 +169,7 @@ export default () => {
             swipeEdgeWidth: '100%',
             drawerStyle: {
               height: '100%',
-              width: '100%'
+              width: '60%'
             }
             }}
         >

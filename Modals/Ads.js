@@ -1,11 +1,26 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { SafeAreaView, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
+import { MaterialIcons } from '@expo/vector-icons';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-export default function Ads() {
+
+
+const Tab = createMaterialTopTabNavigator();
+
+export default function Ads( {navigation}) {
+
+  const pressBack = () => {
+    navigation.navigate('Dashboards')
+  }
+
   return (
-    <View>
-      <Text>Ads</Text>
-    </View>
+    <SafeAreaView>
+      <View>
+      <MaterialIcons name="arrow-back" size={40} color="black"
+       style={{marginTop: 10, }} onPress={pressBack} />
+      </View>
+     
+    </SafeAreaView>
   )
 }
 
