@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef, useMemo,useCallback } from 'react'
-import { View, Text, SafeAreaView, ScrollView, Image, StyleSheet, Button, TouchableOpacity, RefreshControl } from 'react-native'
+import { View, Text, SafeAreaView, ScrollView, Image, StyleSheet, Button, TouchableOpacity, RefreshControl, ActivityIndicator } from 'react-native'
 import React from 'react'
 import { MaterialIcons } from '@expo/vector-icons';
 import {
@@ -68,9 +68,7 @@ export default function Market() {
       >
         {
         isLoading ? 
-        <Text>
-          Loading
-        </Text>
+         <ActivityIndicator size="large" />
           : (
           data.map((coins) => (
             <TouchableOpacity  style={styles.market} onPress = {() => openModal(coins)} key={coins.id}>

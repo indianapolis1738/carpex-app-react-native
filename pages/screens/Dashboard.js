@@ -69,12 +69,16 @@ function Dashboard ({navigation})  {
     navigation.navigate('Profile')
   };
 
+  const pressBlog = () => {
+    navigation.navigate("Blog")
+}
+
   const [greet, setGreet] = useState('');
 
   const findGreet = () => {
     const hrs = new Date().getHours()
-    if (hrs === 0 || hrs < 12) return setGreet('Morning');
-    if (hrs === 1 || hrs > 16) return setGreet('Afternoon');
+    if (hrs === 0 || hrs < 12) return setGreet('Morning😀');
+    if (hrs === 1 || hrs > 16) return setGreet('Afternoon🙂');
     setGreet('Evening')
   }
 
@@ -83,7 +87,7 @@ function Dashboard ({navigation})  {
   }), []
 
   return (
-    <SafeAreaView style= {{padding: 3,}}>
+    <SafeAreaView style= {{padding: 3, height: "100%"}}>
       <StatusBar barStyle="dark-content"/>
       <View style= {styles.div}>
        <View style={styles.dashdiv}>
@@ -178,10 +182,19 @@ function Dashboard ({navigation})  {
         <View>
            <Market/>
         </View>
-        <View>
+      </View>
+      <View>
+        <View style={{flexDirection: 'row', marginStart: "5%", marginBottom: "5%" }}>
+          <Text style={styles.marketHead}>News</Text>
+            <TouchableOpacity onPress={pressBlog} style={{flexDirection: 'row', paddingStart: '50%', marginTop: 12,}}>
+                  <Text>
+                    View More
+                  </Text>
+                  <MaterialIcons name="arrow-forward" size={24} color="black" />
+           </TouchableOpacity>
+      </View>
           <News/>
         </View>
-      </View>
      
       </ScrollView>
     </SafeAreaView>
@@ -233,9 +246,10 @@ const styles = StyleSheet.create({
   },
   container: {
     height: 600,
-    width: '100%',
+    width: '98%',
     backgroundColor: '#172144',
     borderRadius: 20,
+    marginStart: "1%"
   },
     dash: {
       fontSize: 22,
@@ -253,7 +267,6 @@ const styles = StyleSheet.create({
       
     },
     div: {
-      height: 70,
       backgroundColor: '#FFFFFF',
       alignItems: 'center',
       justifyContent: 'space-between',
@@ -275,7 +288,7 @@ const styles = StyleSheet.create({
     last: {
       color: '#FFFFFF',
       fontWeight: '500',
-      marginStart: '35%'
+      marginStart: '30%'
     },
     lastcol: {
       marginTop: 10,
