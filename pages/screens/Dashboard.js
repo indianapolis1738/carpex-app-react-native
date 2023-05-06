@@ -1,5 +1,5 @@
 import { SafeAreaView, StatusBar, StyleSheet, Text, View, ScrollView, TouchableOpacity, RefreshControl, Image, useWindowDimensions } from 'react-native'
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
 import Market from './homeMarket';
@@ -8,6 +8,7 @@ import Buy from '../../Modals/Buy';
 import Sell from '../../Modals/Sell';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createStackNavigator } from '@react-navigation/stack';
+import News from './News';
 
 
 const Tab = createMaterialTopTabNavigator();
@@ -60,7 +61,7 @@ function Dashboard ({navigation})  {
 
 
   const pressMarket = () => {
-    navigation.navigate('Market')
+    navigation.navigate('Markets')
   };
 
 
@@ -68,6 +69,18 @@ function Dashboard ({navigation})  {
     navigation.navigate('Profile')
   };
 
+  const [greet, setGreet] = useState('');
+
+  const findGreet = () => {
+    const hrs = new Date().getHours()
+    if (hrs === 0 || hrs < 12) return setGreet('Morning');
+    if (hrs === 1 || hrs > 16) return setGreet('Afternoon');
+    setGreet('Evening')
+  }
+
+  useEffect(() => {
+    findGreet();
+  }), []
 
   return (
     <SafeAreaView style= {{padding: 3,}}>
@@ -108,9 +121,13 @@ function Dashboard ({navigation})  {
       >
       <View style={styles.container}>
         <View style={styles.lastcol}>
+          <View style={styles.greety}>
+          <Text style={styles.greet}>{`Good ${greet} Iyanu,`}</Text>
           <Text style={styles.last}>
             Last 30 Days
           </Text>
+          </View>
+         
           <View style={styles.assetrow}>
             <View style={styles.assetcol}>
               <Text style={styles.colHeader}>
@@ -158,7 +175,12 @@ function Dashboard ({navigation})  {
             <MaterialIcons name="arrow-forward" size={24} color="black" />
           </TouchableOpacity>
         </View>
-          <Market/>
+        <View>
+           <Market/>
+        </View>
+        <View>
+          <News/>
+        </View>
       </View>
      
       </ScrollView>
@@ -236,6 +258,15 @@ const styles = StyleSheet.create({
       alignItems: 'center',
       justifyContent: 'space-between',
     },
+    greet: {
+      color: 'white',
+      marginStart: 20,
+      fontWeight: '700'
+    },
+    greety: {
+      flexDirection: 'row',
+      marginTop: '5%',
+    },
     icon: {
       marginEnd: 12,
       width: 30,
@@ -243,9 +274,8 @@ const styles = StyleSheet.create({
     },
     last: {
       color: '#FFFFFF',
-      marginStart: 20,
-      marginTop: 20,
       fontWeight: '500',
+      marginStart: '35%'
     },
     lastcol: {
       marginTop: 10,
