@@ -2,7 +2,7 @@ import React from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import { createDrawerNavigator } from "@react-navigation/drawer";
-import  SignUp from "./pages/screens/SignUp"
+import SignUp from "./pages/screens/SignUp"
 import SignIn from "./pages/screens/SignIn";
 import Dashboard from "./pages/screens/Dashboard";
 import Wallet from "./pages/screens/Wallet";
@@ -14,9 +14,8 @@ import { AuthContext } from "./pages/screens/context";
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Profile from "./pages/screens/Profile";
 import 'react-native-gesture-handler';
-import calculator from "./pages/screens/Calculator";
+//import Calculator from "./pages/screens/Calculator";
 import Ads from "./Modals/Ads";
-import { View, Text } from "react-native";
 
 
 const AuthStack = createStackNavigator();
@@ -29,39 +28,39 @@ const Drawer = createDrawerNavigator();
 
 
 const DashStackScreen = () => (
-  <DashStack.Navigator 
-  screenOptions={{
-    headerShown: false,
-    tabBarActiveTintColor: '#172144',
-  }}
+  <DashStack.Navigator
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#172144',
+    }}
   >
-    <DashStack.Screen  name="Dashboards" component={Dashboard}  />
+    <DashStack.Screen name="Dashboards" component={Dashboard} />
     <DashStack.Screen name="Blog" component={Blog} />
     <DashStack.Screen name="Profile" component={Profile} />
-    <DashStack.Screen name="Ads" component={Ads}/>
+    <DashStack.Screen name="Ads" component={Ads} />
   </DashStack.Navigator>
-) 
+)
 
 const WalletStackScreen = () => (
   <WalletStack.Navigator
-  screenOptions={{
-    headerShown: false,
-    tabBarActiveTintColor: '#172144',
-  }}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#172144',
+    }}
   >
-    <WalletStack.Screen  name="Wallets" component={Wallet} />
+    <WalletStack.Screen name="Wallets" component={Wallet} />
   </WalletStack.Navigator>
 )
 
 
 const MarketStackScreen = () => (
   <MarketStack.Navigator
-  screenOptions={{
-    headerShown: false,
-    tabBarActiveTintColor: '#172144',
-  }}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#172144',
+    }}
   >
-    <MarketStack.Screen  name="Market" component={Market}  />
+    <MarketStack.Screen name="Market" component={Market} />
   </MarketStack.Navigator>
 )
 
@@ -70,22 +69,22 @@ const BlogStack = createStackNavigator();
 
 const BlogStackScreen = () => (
   <BlogStack.Navigator>
-    <BlogStack.Screen 
-      name = 'Blog' component={Blog}
+    <BlogStack.Screen
+      name='Blog' component={Blog}
     />
   </BlogStack.Navigator>
 )
 
-const CaculatorStack = createStackNavigator();
+//const CaculatorStack = createStackNavigator();
 
 
-const CaculatortackScreen = () => (
-  <CaculatorStack.Navigator>
-    <CaculatorStack.Screen 
-      name = 'Calculator' component={calculator}
-    />
-  </CaculatorStack.Navigator>
-)
+//const CaculatortackScreen = () => (
+//<CaculatorStack.Navigator>
+// <CaculatorStack.Screen
+// name='Calculator' component={Calculator}
+//>
+//</CaculatorStack.Navigator>
+//)
 
 
 
@@ -93,13 +92,13 @@ const CaculatortackScreen = () => (
 
 const TabsScreen = () => (
   <Tabs.Navigator
-  screenOptions={{
-    headerShown: false,
-    tabBarActiveTintColor: '#172144',
-    tabBarLabelStyle:{fontSize: 11}
-  }}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#172144',
+      tabBarLabelStyle: { fontSize: 11 }
+    }}
   >
-    <Tabs.Screen  options={{
+    <Tabs.Screen options={{
       tabBarLabel: 'Dashboard',
       tabBarIcon: ({ color }) => (
         <MaterialCommunityIcons name="home" color={color} size={30} />
@@ -143,60 +142,56 @@ export default () => {
     }
   }, [])
 
-  
+
 
   React.useEffect(() => {
     setTimeout(() => {
-        setIsLoading(false);
+      setIsLoading(false);
     }, 1000)
   }, []);
 
   if (isLoading) {
-    return<Splash />
+    return <Splash />
   }
 
 
   return (
     <AuthContext.Provider value={authContext}>
-    <NavigationContainer>
+      <NavigationContainer>
 
-      {userToken ? (
-        <Drawer.Navigator 
+        {userToken ? (
+          <Drawer.Navigator
             screenOptions={{
-            headerShown: false,
-            drawerPosition: 'left',
-            drawerType: 'front',
-            swipeEdgeWidth: '100%',
-            drawerStyle: {
-              height: '100%',
-              width: '60%'
-            }
+              headerShown: false,
+              drawerPosition: 'left',
+              drawerType: 'front',
+              swipeEdgeWidth: '100%',
+              drawerStyle: {
+                height: '100%',
+                width: '60%'
+              }
             }}
-        >
-          <Drawer.Screen 
-           name="Dashboard" 
-           component={TabsScreen}
-          />
-          <Drawer.Screen 
-            name="Blogs"
-            component={BlogStackScreen}
-          />
-          <Drawer.Screen 
-            name="Calculator"
-            component={CaculatortackScreen}
-          />
-        </Drawer.Navigator>
-      ) : (
-      <AuthStack.Navigator
-      screenOptions={{
-        headerShown: false
-      }}
-      >
-      <AuthStack.Screen name="SignIn" component={SignIn} options={{title: "Sign In"}}/>
-      <AuthStack.Screen name="SignUp" component={SignUp} options={{title: "Sign Up"}} />
-      </AuthStack.Navigator>
-      )}
-     </NavigationContainer>
-     </AuthContext.Provider>
+          >
+            <Drawer.Screen
+              name="Dashboard"
+              component={TabsScreen}
+            />
+            <Drawer.Screen
+              name="Blogs"
+              component={BlogStackScreen}
+            />
+          </Drawer.Navigator>
+        ) : (
+          <AuthStack.Navigator
+            screenOptions={{
+              headerShown: false
+            }}
+          >
+            <AuthStack.Screen name="SignIn" component={SignIn} options={{ title: "Sign In" }} />
+            <AuthStack.Screen name="SignUp" component={SignUp} options={{ title: "Sign Up" }} />
+          </AuthStack.Navigator>
+        )}
+      </NavigationContainer>
+    </AuthContext.Provider>
   )
 };

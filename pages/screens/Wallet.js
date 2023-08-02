@@ -1,10 +1,10 @@
-import { Text, SafeAreaView,View, StyleSheet, Button, ScrollView, FlatList,StatusBar, TouchableOpacity } from 'react-native'
+import { Text, SafeAreaView, View, StyleSheet, Button, ScrollView, FlatList, StatusBar, TouchableOpacity } from 'react-native'
 import React, { Component, useEffect, useRef, useMemo } from 'react'
 import Line from '../../components/Line'
 import { MaterialIcons } from '@expo/vector-icons';
 import { FontAwesome } from '@expo/vector-icons';
 import Market from './homeMarket';
-import { BottomSheetModal, BottomSheetModalProvider,  } from '@gorhom/bottom-sheet';
+import { BottomSheetModal, BottomSheetModalProvider, } from '@gorhom/bottom-sheet';
 import TransferModal from '../../Modals/TransferModal';
 import WithdrawModal from '../../Modals/WithdrawModal';
 import DepositModal from '../../Modals/DepositModal';
@@ -27,62 +27,62 @@ const DATA = [
   },
 ];
 
-const Item = ({title}) => (
-  <View style={styles.item }>
+const Item = ({ title }) => (
+  <View style={styles.item}>
     <Text style={styles.title}>{title}</Text>
   </View>
 );
 
-function Wallet ({navigation}) {
+function Wallet({ navigation }) {
 
-   // ref
-   const bottomSheetModalRef = useRef (null);
+  // ref
+  const bottomSheetModalRef = useRef(null);
 
   const snapPoints = useMemo(() => ['95%']);
 
 
-    function handlePresentModal() {
-      bottomSheetModalRef.current?.present();
-    }
+  function handlePresentModal() {
+    bottomSheetModalRef.current?.present();
+  }
 
 
 
-    return (
-      <SafeAreaView style= {styles.page}>
-        <View style = {styles.header}>
-          <View>
-          <Text style = {styles.wa}>Wallet</Text>
-          <Text style = {styles.view}>View all your daily crypto stats and assets here</Text>
-          </View>
-          <TouchableOpacity style={styles.history}>
-            <FontAwesome name="history" size={25} color="black" />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.menu}  onPress= {() => navigation.toggleDrawer()} >
+  return (
+    <SafeAreaView style={styles.page}>
+      <View style={styles.header}>
+        <View>
+          <Text style={styles.wa}>Wallet</Text>
+          <Text style={styles.view}>View all your daily crypto stats and assets here</Text>
+        </View>
+        <TouchableOpacity style={styles.history}>
+          <FontAwesome name="history" size={25} color="black" />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.menu} onPress={() => navigation.toggleDrawer()} >
           <MaterialIcons name="menu" size={40} color="black" />
-          </TouchableOpacity>
-        </View>
-        <ScrollView>
-       
+        </TouchableOpacity>
+      </View>
+      <ScrollView>
 
-        <View style= {styles.wallet}>
+
+        <View style={styles.wallet}>
           <View style={styles.baldiv}>
-          <Text style = {styles.total}>Total Balance</Text>
-          <Text style = {styles.balance}>₦1,200,000</Text>
+            <Text style={styles.total}>Total Balance</Text>
+            <Text style={styles.balance}>₦1,200,000</Text>
           </View>
-          <View style = {styles.buttons}>
-          <Line/>
-          <View style={styles.container}>
-             <View style = {styles.with}>
-                <DepositModal/>
-             </View>
-            <View style = {styles.with1}>
-                <WithdrawModal/>
+          <View style={styles.buttons}>
+            <Line />
+            <View style={styles.container}>
+              <View style={styles.with}>
+                <DepositModal />
+              </View>
+              <View style={styles.with1}>
+                <WithdrawModal />
+              </View>
+              <View style={styles.with1}>
+                <TransferModal />
+              </View>
             </View>
-            <View style = {styles.with1}>
-               <TransferModal/>
-            </View>
-         </View>
-        </View>
+          </View>
         </View>
         <View style={styles.carousel}>
           <Text style={styles.assets}>
@@ -94,25 +94,25 @@ function Wallet ({navigation}) {
         </View>
         <View style={styles.carouselbig}>
           <FlatList
-          data={DATA}
-          renderItem={({item}) => <Item title={item.title}/>}
-          keyExtractor={item=>item.id}
-          horizontal
+            data={DATA}
+            renderItem={({ item }) => <Item title={item.title} />}
+            keyExtractor={item => item.id}
+            horizontal
           />
         </View>
-        <View>
-          <Market/>
-        </View>
-        </ScrollView>
+        {/* <View>
+          <Market />
+        </View>*/}
+      </ScrollView>
 
-      </SafeAreaView>
-
-      
-    )
-  }
+    </SafeAreaView>
 
 
-const styles = StyleSheet.create ({
+  )
+}
+
+
+const styles = StyleSheet.create({
   assets: {
     color: '#000000',
     fontSize: '27%',
@@ -130,7 +130,7 @@ const styles = StyleSheet.create ({
   buttons: {
     marginTop: 45,
   },
-  carousel:{
+  carousel: {
     marginStart: 12,
     marginTop: 20,
   },
@@ -142,11 +142,11 @@ const styles = StyleSheet.create ({
     marginBottom: 40,
   },
   container: {
-      display: 'flex',
-      flexDirection: 'row',
-      marginStart: 2,
-      marginTop: 20,
-      marginBottom: 20,
+    display: 'flex',
+    flexDirection: 'row',
+    marginStart: 2,
+    marginTop: 20,
+    marginBottom: 20,
   },
   header: {
     marginTop: 10,
@@ -157,8 +157,9 @@ const styles = StyleSheet.create ({
     flexDirection: 'row',
   },
   history: {
-    marginTop: 20,
-    marginStart: 20,
+    marginTop: 18,
+    marginStart: 14,
+    marginEnd: 3,
   },
   item: {
     width: 300,
@@ -170,7 +171,7 @@ const styles = StyleSheet.create ({
     marginTop: 20,
   },
   menu: {
-    marginStart: 25,
+    marginStart: 0,
     marginTop: 10,
   },
   page: {

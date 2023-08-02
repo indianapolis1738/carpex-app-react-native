@@ -1,5 +1,14 @@
-import React, {Component} from 'react';
-import {Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, Button, } from 'react-native';
+import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
+import React, { Component } from 'react';
+import { Alert, Modal, StyleSheet, Text, Pressable, View, TextInput, Button, SafeAreaView, StatusBar } from 'react-native';
+import Fiat from '../TransactionScreens/Withdraw/Fiat';
+import Crypto from '../TransactionScreens/Withdraw/Crypto';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+
+
+
+const Tab = createMaterialTopTabNavigator();
+
 
 class WithdrawModal extends Component {
   state = {
@@ -7,92 +16,27 @@ class WithdrawModal extends Component {
   };
 
   render() {
-    const {modalVisible} = this.state;
+    const { modalVisible } = this.state;
     return (
-      <View style={styles.centeredView}>
+      <View>
         <Modal
           animationType="slide"
           transparent={true}
           visible={modalVisible}
           onRequestClose={() => {
-            Alert.alert('Modal has been closed.');
-            this.setState({modalVisible: !modalVisible});
-          }}>
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-            <View style={{flexDirection: 'row', width: '100%'}}>
-              <Text style={{marginTop: 15, fontSize: 18,}}>
-                Withdraw funds
-              </Text>
-              <Pressable
-                style={[styles.button, styles.buttonClose]}
-                onPress={() => this.setState({modalVisible: !modalVisible})}>
-                <Text style={styles.textStyle}>X</Text>
-              </Pressable>
-              </View>
-            <View style={styles.width}>
-             <Text style={styles.label}>
-                Wallet Address: 
-             </Text>
-              <TextInput
-                    style={styles.input}
-                />
+            this.setState({ modalVisible: !modalVisible });
+          }}
+          style={styles.safe}
+        >
 
-             <Text style={styles.label}>
-                Asset to withdraw (Choose from your asset):
-             </Text>
-                <TextInput
-                    style={styles.input}
-                />
-
-                <Text style={styles.label}>
-                    Amount to transfer:
-                </Text>
-
-                <TextInput
-                    style={styles.input}
-                    keyboardType="numeric"
-                />
-
-                <Text style={styles.label}>
-                    Transaction PIN:
-                </Text>
-
-
-              <View style={styles.pinModal}>
-                <TextInput
-                    style={styles.pin}
-                    secureTextEntry
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.pin}
-                    secureTextEntry
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.pin}
-                    secureTextEntry
-                    keyboardType="numeric"
-                />
-                <TextInput
-                    style={styles.pin}
-                    secureTextEntry
-                    keyboardType="numeric"
-                />
-              </View>
-
-
-                <View style={styles.send}>
-                    <Button title='Withdraw' color={'white'}/>
-                </View>
-                </View>
-            </View>
-          </View>
+          <Tab.Navigator>
+            <Tab.Screen name="Home" component={Fiat} />
+            <Tab.Screen name="Settings" component={Crypto} />
+          </Tab.Navigator>
         </Modal>
         <Pressable
           style={[styles.button, styles.buttonOpen]}
-          onPress={() => this.setState({modalVisible: true})}>
+          onPress={() => this.setState({ modalVisible: true })}>
           <Text style={styles.textStyl}>Withdraw</Text>
         </Pressable>
       </View>
@@ -101,86 +45,7 @@ class WithdrawModal extends Component {
 }
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  modalView: {
-    marginTop: '5%',
-    backgroundColor: 'white',
-    borderRadius: 20,
-    padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
-    height: '90%',
-    width: '100%',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  buttonOpen: {
-    backgroundColor: 'transparent',
-  },
-  buttonClose: {
-    backgroundColor: 'transparent',
-    marginStart: '60%',
-    marginBottom: 40,
-  },
-  
-  input: {
-    height: 49,
-    width: '90%',
-    marginBottom: 10,
-    marginTop: 15,
-    backgroundColor: '#F2F2F2',
-    borderRadius: '4px',
-  },
-  label: {
-    marginTop: 20,
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: 'center',
-  },
-  pin: {
-    width: 40,
-    height: 40,
-    backgroundColor: '#F2F2F2',
-    margin: 17,
-    textAlign: 'center',
-    borderRadius: 10,
-  },
-  pinModal: {
-    flexDirection: 'row',
-    height: 50,
-    width: '100%',
-    alignContent: 'space-between',
-    marginBottom: 20,
-  },
-  send: {
-    height: 45,
-    width: '90%',
-    backgroundColor: '#172144',
-    borderRadius: 10,
-    marginTop: 30,
-  },
-  textStyle: {
-    fontSize: 35,
-    fontWeight: '700'
-  },
-  textStyl: {
-    fontSize: 19,
-  },
-  width: {
-    width: '100%',
-    marginStart: 30,
-    marginTop: 30,
-  },
+
 });
 
 export default WithdrawModal;

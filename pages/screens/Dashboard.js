@@ -2,7 +2,7 @@ import { SafeAreaView, StatusBar, StyleSheet, Text, View, ScrollView, TouchableO
 import React, { useEffect, useState } from 'react'
 import { Entypo } from '@expo/vector-icons';
 import { MaterialIcons } from '@expo/vector-icons';
-import Market from './homeMarket';
+//import Market from './homeMarket';
 import Notifications from '../../components/notifications';
 import Buy from '../../Modals/Buy';
 import Sell from '../../Modals/Sell';
@@ -17,29 +17,29 @@ const TradeStak = createStackNavigator();
 
 const TradeStackScreen = () => (
   <TradeStack.Navigator
-  screenOptions={{
-    headerShown: false,
-    tabBarActiveTintColor: '#172144',
-  }}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#172144',
+    }}
   >
-    <TradeStack.Screen name='buy' component={Buy}/>
+    <TradeStack.Screen name='buy' component={Buy} />
   </TradeStack.Navigator>
 )
 
 const TradeStakScreen = () => (
   <TradeStak.Navigator
-  screenOptions={{
-    headerShown: false,
-    tabBarActiveTintColor: '#172144',
-  }}
+    screenOptions={{
+      headerShown: false,
+      tabBarActiveTintColor: '#172144',
+    }}
   >
-    <TradeStak.Screen name='Sell' component={Sell}/>
+    <TradeStak.Screen name='Sell' component={Sell} />
   </TradeStak.Navigator>
 )
 
 
 
-function Dashboard ({navigation})  {
+function Dashboard({ navigation }) {
 
 
 
@@ -71,15 +71,15 @@ function Dashboard ({navigation})  {
 
   const pressBlog = () => {
     navigation.navigate("Blog")
-}
+  }
 
   const [greet, setGreet] = useState('');
 
   const findGreet = () => {
     const hrs = new Date().getHours()
-    if (hrs === 0 || hrs < 12) return setGreet('Morning😀');
-    if (hrs === 1 || hrs > 16) return setGreet('Afternoon🙂');
-    setGreet('Evening')
+    if (hrs === 0 || hrs < 12) return setGreet('Morning 😀');
+    if (hrs === 1 || hrs < 16) return setGreet('Afternoon 🙂');
+    setGreet('Evening 🌚')
   }
 
   useEffect(() => {
@@ -87,115 +87,115 @@ function Dashboard ({navigation})  {
   }), []
 
   return (
-    <SafeAreaView style= {{padding: 3, height: "100%"}}>
-      <StatusBar barStyle="dark-content"/>
-      <View style= {styles.div}>
-       <View style={styles.dashdiv}>
-        <TouchableOpacity style={styles.menu} onPress= {() => navigation.toggleDrawer()}>
-         <MaterialIcons name="menu" size={35} color="rgba(123, 120, 120, 1)" />
-         </TouchableOpacity>
-         <Text style= {styles.dash}> Dashboard</Text>
-       <View style={styles.dashicon}>
-        <View style={styles.icon}>
-           <Notifications />
+    <SafeAreaView style={{ padding: 3, height: "100%" }}>
+      <StatusBar barStyle="dark-content" />
+      <View style={styles.div}>
+        <View style={styles.dashdiv}>
+          <TouchableOpacity style={styles.menu} onPress={() => navigation.toggleDrawer()}>
+            <MaterialIcons name="menu" size={40} color="black" />
+            <Text style={styles.dash}> Dashboard</Text>
+          </TouchableOpacity>
+
+          <View style={styles.dashicon}>
+            <View style={styles.icon}>
+              <Notifications />
+            </View>
+            <View style={styles.icon}>
+              <Entypo name="adjust" size={24} color={'rgba(123, 120, 120, 1)'} />
+            </View>
+            <View style={{ paddingEnd: 20, }}>
+              <TouchableOpacity onPress={pressProfile}>
+                <Image
+                  source={{ uri: 'https://lh3.googleusercontent.com/a/AGNmyxYRX-4BlLMfVvFvDtl3kHs70DiJYOt5UWAcyd8=s360', }}
+                  style={{
+                    width: 40,
+                    height: 40,
+                    borderRadius: 20,
+                    marginEnd: 3,
+                  }}
+                />
+              </TouchableOpacity>
+            </View>
+          </View>
         </View>
-        <View style={styles.icon}>
-            <Entypo name="adjust" size={24} color={'rgba(123, 120, 120, 1)'} />
-        </View>
-        <View  style={{paddingEnd: 20,}}>
-          <TouchableOpacity onPress={pressProfile}>
-            <Image
-            source={{uri: 'https://lh3.googleusercontent.com/a/AGNmyxYRX-4BlLMfVvFvDtl3kHs70DiJYOt5UWAcyd8=s360',}}
-            style={{
-              width: 40,
-              height: 40,
-              borderRadius: 20,
-            }}
-            />
-            </TouchableOpacity>
-        </View>
-        </View>
-      </View>
       </View>
       <ScrollView
-         contentContainerStyle={styles.scrollView}
-         refreshControl={
-           <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
-         }
+        contentContainerStyle={styles.scrollView}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
       >
-      <View style={styles.container}>
-        <View style={styles.lastcol}>
-          <View style={styles.greety}>
-          <Text style={styles.greet}>{`Good ${greet} Iyanu,`}</Text>
-          <Text style={styles.last}>
-            Last 30 Days
-          </Text>
-          </View>
-         
-          <View style={styles.assetrow}>
-            <View style={styles.assetcol}>
-              <Text style={styles.colHeader}>
-                Wallet Balance
-              </Text>
-              <Text style={styles.amountCol}>
-                121,000 NGN
-              </Text>
+        <View style={styles.container}>
+          <View style={styles.lastcol}>
+            <View style={styles.greety}>
+              <Text style={styles.greet}>{`Good ${greet},`}</Text>
+
             </View>
-            <View style={styles.assetcol}>
-              <Text style={styles.colHeader}>
-                Total Assets
-              </Text>
-              <Text style={styles.amountCol}>
-                23
-              </Text>
-            </View>
-            <View style={styles.assetcol}>
-              <Text style={styles.colHeader}>
-                Total Transactions
-              </Text>
-              <Text style={styles.amountCol}>
-                23
-              </Text>
+
+            <View style={styles.assetrow}>
+              <View style={styles.assetcol}>
+                <Text style={styles.colHeader}>
+                  Wallet Balance
+                </Text>
+                <Text style={styles.amountCol}>
+                  121,000 NGN
+                </Text>
+              </View>
+              <View style={styles.assetcol}>
+                <Text style={styles.colHeader}>
+                  Total Assets
+                </Text>
+                <Text style={styles.amountCol}>
+                  23
+                </Text>
+              </View>
+              <View style={styles.assetcol}>
+                <Text style={styles.colHeader}>
+                  Total Transactions
+                </Text>
+                <Text style={styles.amountCol}>
+                  23
+                </Text>
+              </View>
             </View>
           </View>
         </View>
-      </View>
-      <View style={styles.buydiv}>
-      <Tab.Navigator>
-          <Tab.Screen name="Buy" component={TradeStackScreen} />
-          <Tab.Screen name="Sell" component={TradeStakScreen} />
-      </Tab.Navigator>
-           
-      </View>
-      <View style={styles.market}>
-        <View style={styles.marketDiv}>
-          <Text style={ styles.marketHead}>
-            Market
-          </Text>
-          <TouchableOpacity onPress={pressMarket} style={{flexDirection: 'row', paddingStart: '40%', marginTop: 12,}}>
-            <Text>
-              View More
+        <View style={styles.buydiv}>
+          <Tab.Navigator>
+            <Tab.Screen name="Buy" component={TradeStackScreen} />
+            <Tab.Screen name="Sell" component={TradeStakScreen} />
+          </Tab.Navigator>
+
+        </View>
+        <View style={styles.market}>
+          <View style={styles.marketDiv}>
+            <Text style={styles.marketHead}>
+              Market
             </Text>
-            <MaterialIcons name="arrow-forward" size={24} color="black" />
-          </TouchableOpacity>
+            <TouchableOpacity onPress={pressMarket} style={{ flexDirection: 'row', paddingStart: '40%', marginTop: 12, }}>
+              <Text>
+                View More
+              </Text>
+              <MaterialIcons name="arrow-forward" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+          {/* <View>
+            <Market />
+          </View>*/}
         </View>
         <View>
-           <Market/>
+          <View style={{ flexDirection: 'row', marginStart: "5%", marginBottom: "5%" }}>
+            <Text style={styles.marketHead}>News</Text>
+            <TouchableOpacity onPress={pressBlog} style={{ flexDirection: 'row', paddingStart: '50%', marginTop: 12, }}>
+              <Text>
+                View More
+              </Text>
+              <MaterialIcons name="arrow-forward" size={24} color="black" />
+            </TouchableOpacity>
+          </View>
+          <News />
         </View>
-      </View>
-      <View>
-        <View style={{flexDirection: 'row', marginStart: "5%", marginBottom: "5%" }}>
-          <Text style={styles.marketHead}>News</Text>
-            <TouchableOpacity onPress={pressBlog} style={{flexDirection: 'row', paddingStart: '50%', marginTop: 12,}}>
-                  <Text>
-                    View More
-                  </Text>
-                  <MaterialIcons name="arrow-forward" size={24} color="black" />
-           </TouchableOpacity>
-      </View>
-          <News/>
-        </View>
-     
+
       </ScrollView>
     </SafeAreaView>
   )
@@ -211,14 +211,14 @@ const styles = StyleSheet.create({
   assetcol: {
     backgroundColor: '#F8FBFF',
     width: '30%',
-    marginStart:'3%',
+    marginStart: '3%',
     height: 80,
     borderRadius: 5,
   },
   amountCol: {
     marginStart: 5,
     marginTop: 10,
-    fontWeight: '700',
+    fontWeight: '500',
     fontSize: 17,
   },
   btnTabActive: {
@@ -249,80 +249,77 @@ const styles = StyleSheet.create({
     width: '98%',
     backgroundColor: '#172144',
     borderRadius: 20,
-    marginStart: "1%"
+    marginStart: "1%",
+    marginTop: "2%"
   },
-    dash: {
-      fontSize: 22,
-      fontWeight: '700',
-      fontStyle: 'normal',
-      marginTop: 8,
-    },
-    dashdiv: {
-      marginTop: 20,
-      flexDirection: 'row',
-    },
-    dashicon: {
-      flexDirection: 'row',
-      marginStart: '30%',
-      
-    },
-    div: {
-      backgroundColor: '#FFFFFF',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-    },
-    greet: {
-      color: 'white',
-      marginStart: 20,
-      fontWeight: '700'
-    },
-    greety: {
-      flexDirection: 'row',
-      marginTop: '5%',
-    },
-    icon: {
-      marginEnd: 12,
-      width: 30,
-      marginTop: 7,
-    },
-    last: {
-      color: '#FFFFFF',
-      fontWeight: '500',
-      marginStart: '30%'
-    },
-    lastcol: {
-      marginTop: 10,
-    },
-    listTab: {
-      backgroundColor: 'transparent',
-      flexDirection: 'row',
-      alignSelf: 'center',
-      height: 500,
-    },
-    market: {
-      backgroundColor: 'transparent',
-      height: 500,
-      overflow: 'hidden',
-    },
-    marketDiv: {
-      flexDirection: 'row',
-      paddingStart: 25,
-      paddingTop: 40,
-      marginBottom: 20,
-    },
-    marketHead: {
-      fontWeight: '400',
-      fontSize: 30,
-    },
-    menu: {
-      paddingStart: 10,
-    },
-    textTab: {
-      fontSize: 20,
-      fontWeight: '600',
-      width: 100,
-      textAlign: 'center',
-    },
+  dash: {
+    fontSize: 23,
+    fontWeight: '700',
+    fontStyle: 'normal',
+    paddingTop: 5,
+  },
+  dashdiv: {
+    marginTop: 20,
+    flexDirection: 'row',
+  },
+  dashicon: {
+    flexDirection: 'row',
+    marginStart: '30%',
+
+  },
+  div: {
+    backgroundColor: '#FFFFFF',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  greet: {
+    color: 'white',
+    marginStart: 15,
+    fontWeight: '700'
+  },
+  greety: {
+    flexDirection: 'row',
+    marginTop: '5%',
+  },
+  icon: {
+    marginEnd: 12,
+    width: 30,
+    marginTop: 7,
+  },
+  lastcol: {
+    marginTop: 10,
+  },
+  listTab: {
+    backgroundColor: 'transparent',
+    flexDirection: 'row',
+    alignSelf: 'center',
+    height: 500,
+  },
+  market: {
+    backgroundColor: 'transparent',
+    height: 500,
+    overflow: 'hidden',
+  },
+  marketDiv: {
+    flexDirection: 'row',
+    paddingStart: 25,
+    paddingTop: 40,
+    marginBottom: 20,
+  },
+  marketHead: {
+    fontWeight: '400',
+    fontSize: 30,
+  },
+  menu: {
+    flexDirection: "row",
+    marginLeft: 5
+  },
+  textTab: {
+    fontSize: 20,
+    fontWeight: '600',
+    width: 100,
+    textAlign: 'center',
+  },
 })
 
 
